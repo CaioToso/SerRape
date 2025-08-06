@@ -8,31 +8,29 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #E6F9E6; /* Fondo verde claro */
-      color: #5C4033; /* Marrón tabaco para texto */
+      background-color: #E6F9E6;
+      color: #5C4033;
     }
     header {
       background-color: #FFFFFF;
       text-align: center;
       padding: 20px;
       border-bottom: 1px solid #ddd;
-      color: #5C4033;
     }
     header img {
-      height: 80px;
+      height: 100px;
       width: auto;
       margin-bottom: 10px;
     }
     header h1 {
       margin: 5px 0;
       font-size: 26px;
-      color: #5C4033;
     }
     header p {
       margin: 0;
       font-size: 16px;
-      color: #5C4033;
     }
+
     /* Productos principales */
     .productos-principales {
       display: flex;
@@ -48,22 +46,14 @@
       width: 280px;
       text-align: center;
       padding: 15px;
-      color: #5C4033;
     }
     .producto img {
       max-width: 100%;
       border-radius: 5px;
       margin-bottom: 10px;
+      cursor: pointer;
     }
-    .producto h3 {
-      margin: 5px 0;
-      font-size: 18px;
-      color: #5C4033;
-    }
-    .producto p {
-      font-size: 14px;
-      color: #5C4033;
-    }
+
     /* Galería */
     .galeria {
       padding: 30px 20px;
@@ -71,7 +61,6 @@
     .galeria h2 {
       text-align: center;
       margin-bottom: 20px;
-      color: #5C4033;
     }
     .imagenes {
       display: grid;
@@ -84,31 +73,25 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.15);
       text-align: center;
       padding: 10px;
-      color: #5C4033;
     }
     .imagen-item img {
       max-width: 100%;
       border-radius: 5px;
       margin-bottom: 5px;
-    }
-    .imagen-item p {
-      font-size: 13px;
-      color: #5C4033;
-      margin: 0 0 8px 0;
+      cursor: pointer;
     }
     .imagen-item button {
-      background: #5C8536; /* verde hoja */
+      background: #5C8536;
       color: white;
       border: none;
       padding: 8px 12px;
       cursor: pointer;
       border-radius: 5px;
-      font-size: 14px;
-      transition: background-color 0.3s ease;
     }
     .imagen-item button:hover {
       background-color: #2E7D32;
     }
+
     /* Botón flotante carrito */
     .carrito-btn {
       position: fixed;
@@ -117,7 +100,7 @@
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      background: #2E7D32; /* verde hoja */
+      background: #2E7D32;
       color: white;
       font-size: 24px;
       border: none;
@@ -125,6 +108,7 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.3);
       z-index: 10000;
     }
+
     /* Carrito lateral */
     #carrito {
       display: none;
@@ -133,38 +117,54 @@
       right: 0;
       width: 320px;
       height: calc(100% - 80px);
-      background: #f1f8e9; /* verde hoja muy claro */
+      background: #f1f8e9;
       border-left: 3px solid #2E7D32;
       padding: 20px;
       box-shadow: -2px 0 8px rgba(0,0,0,0.15);
       overflow-y: auto;
       z-index: 9999;
-      color: #5C4033;
-      font-size: 15px;
     }
-    #carrito h2 {
-      margin-top: 0;
-      font-size: 22px;
-      border-bottom: 1px solid #2E7D32;
-      padding-bottom: 8px;
+
+    /* Modal imagen */
+    #modal {
+      display: none;
+      position: fixed;
+      z-index: 10001;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
-    #lista-carrito {
-      list-style: none;
-      padding-left: 0;
-      margin-bottom: 20px;
+    #modal img {
+      max-width: 80%;
+      max-height: 80%;
+      border: 5px solid #fff;
+      border-radius: 10px;
     }
-    #lista-carrito li {
-      margin-bottom: 10px;
-    }
-    #carrito button {
-      background: #2E7D32;
+    #modal span.cerrar {
+      position: absolute;
+      top: 20px;
+      right: 30px;
       color: white;
-      border: none;
-      padding: 10px 15px;
+      font-size: 40px;
       cursor: pointer;
-      border-radius: 5px;
-      font-size: 16px;
     }
+    /* Flechas navegación */
+    .flecha {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 50px;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+    }
+    .flecha.izq { left: 40px; }
+    .flecha.der { right: 40px; }
   </style>
 </head>
 <body>
@@ -172,33 +172,33 @@
   <!-- Header -->
   <header>
     <img src="https://i.postimg.cc/0QC9123k/IMG-20240321-WA0026.png" alt="Logo de mi tienda" />
-    <h1>Ser Rapé</h1>
+    <h1>Ser Rapés</h1>
     <p>Una breve descripción de tu tienda o marca.</p>
   </header>
 
   <!-- Productos principales -->
   <section>
-    <h2 style="text-align:center; margin-top: 30px; color: #5C4033;">Productos Principales</h2>
+    <h2 style="text-align:center;">Productos Principales</h2>
     <div class="productos-principales">
       <div class="producto">
-        <img src="producto1.jpg" alt="Producto 1" />
+        <img src="producto1.jpg" alt="Producto 1" class="ampliable" />
         <h3 contenteditable="true">Producto 1</h3>
         <p contenteditable="true">Descripción breve del producto 1.</p>
       </div>
       <div class="producto">
-        <img src="producto2.jpg" alt="Producto 2" />
+        <img src="producto2.jpg" alt="Producto 2" class="ampliable" />
         <h3 contenteditable="true">Producto 2</h3>
         <p contenteditable="true">Descripción breve del producto 2.</p>
       </div>
       <div class="producto">
-        <img src="producto3.jpg" alt="Producto 3" />
+        <img src="producto3.jpg" alt="Producto 3" class="ampliable" />
         <h3 contenteditable="true">Producto 3</h3>
         <p contenteditable="true">Descripción breve del producto 3.</p>
       </div>
     </div>
   </section>
 
-  <!-- Galería de Producto 1 -->
+  <!-- Galerías -->
   <section class="galeria">
     <h2>Galería de Producto 1</h2>
     <div class="imagenes">
@@ -206,7 +206,7 @@
         for(let i=1; i<=10; i++) {
           document.write(`
             <div class="imagen-item">
-              <img src="producto1-img${i}.jpg" alt="Producto 1 Imagen ${i}" />
+              <img src="producto1-img${i}.jpg" alt="Producto 1 Imagen ${i}" class="ampliable" />
               <p contenteditable="true">Producto 1 Imagen ${i}</p>
               <button onclick="agregarAlCarrito('Producto 1 Imagen ${i}', 100)">Agregar al carrito</button>
             </div>
@@ -216,7 +216,6 @@
     </div>
   </section>
 
-  <!-- Galería de Producto 2 -->
   <section class="galeria">
     <h2>Galería de Producto 2</h2>
     <div class="imagenes">
@@ -224,7 +223,7 @@
         for(let i=1; i<=10; i++) {
           document.write(`
             <div class="imagen-item">
-              <img src="producto2-img${i}.jpg" alt="Producto 2 Imagen ${i}" />
+              <img src="producto2-img${i}.jpg" alt="Producto 2 Imagen ${i}" class="ampliable" />
               <p contenteditable="true">Producto 2 Imagen ${i}</p>
               <button onclick="agregarAlCarrito('Producto 2 Imagen ${i}', 120)">Agregar al carrito</button>
             </div>
@@ -234,7 +233,6 @@
     </div>
   </section>
 
-  <!-- Galería de Producto 3 -->
   <section class="galeria">
     <h2>Galería de Producto 3</h2>
     <div class="imagenes">
@@ -242,7 +240,7 @@
         for(let i=1; i<=10; i++) {
           document.write(`
             <div class="imagen-item">
-              <img src="producto3-img${i}.jpg" alt="Producto 3 Imagen ${i}" />
+              <img src="producto3-img${i}.jpg" alt="Producto 3 Imagen ${i}" class="ampliable" />
               <p contenteditable="true">Producto 3 Imagen ${i}</p>
               <button onclick="agregarAlCarrito('Producto 3 Imagen ${i}', 150)">Agregar al carrito</button>
             </div>
@@ -263,18 +261,25 @@
   <!-- Botón flotante del carrito -->
   <button class="carrito-btn" onclick="toggleCarrito()">🛒</button>
 
+  <!-- Modal imagen -->
+  <div id="modal">
+    <span class="cerrar" onclick="cerrarModal()">&times;</span>
+    <span class="flecha izq" onclick="cambiarImagen(-1)">&#10094;</span>
+    <img id="imagen-modal" src="" alt="Vista ampliada" />
+    <span class="flecha der" onclick="cambiarImagen(1)">&#10095;</span>
+  </div>
+
   <script>
+    /* Carrito */
     const carrito = [];
     function toggleCarrito() {
       const c = document.getElementById('carrito');
       c.style.display = c.style.display === 'block' ? 'none' : 'block';
     }
-
     function agregarAlCarrito(nombre, precio) {
       carrito.push({ nombre, precio });
       actualizarCarrito();
     }
-
     function actualizarCarrito() {
       const lista = document.getElementById('lista-carrito');
       const totalEl = document.getElementById('total');
@@ -288,10 +293,33 @@
       });
       totalEl.textContent = total;
     }
-
     function finalizarCompra() {
       alert('¡Gracias por tu compra!');
     }
+
+    /* Modal imágenes con navegación */
+    const imagenes = [];
+    document.querySelectorAll('.ampliable').forEach(img => imagenes.push(img.src));
+    let indiceActual = 0;
+    function abrirModal(src) {
+      indiceActual = imagenes.indexOf(src);
+      document.getElementById('modal').style.display = 'flex';
+      document.getElementById('imagen-modal').src = src;
+    }
+    function cerrarModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+    function cambiarImagen(dir) {
+      indiceActual += dir;
+      if (indiceActual < 0) indiceActual = imagenes.length - 1;
+      if (indiceActual >= imagenes.length) indiceActual = 0;
+      document.getElementById('imagen-modal').src = imagenes[indiceActual];
+    }
+
+    /* Vincular clic en imágenes ampliables */
+    document.querySelectorAll('.ampliable').forEach(img => {
+      img.addEventListener('click', () => abrirModal(img.src));
+    });
   </script>
 
 </body>
