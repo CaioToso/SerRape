@@ -13,28 +13,28 @@
 
     /* IMÁGENES DESTACADAS */
     .destacados { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
-    .destacados img { width: 300px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.4); }
+    .destacados img { width: 300px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.4); cursor: pointer; }
 
     /* GALERÍA */
     .galeria { position: relative; max-width: 900px; margin: auto; overflow: hidden; }
     .slides { display: flex; transition: transform 0.5s ease-in-out; }
-    .slides img { width: 300px; margin: 0 10px; border-radius: 10px; }
+    .slides img { width: 300px; margin: 0 10px; border-radius: 10px; cursor: pointer; }
     .flecha { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 10px; cursor: pointer; font-size: 20px; }
     .izquierda { left: 0; }
     .derecha { right: 0; }
     .carrito-btn { display: block; margin: 10px auto; background: #3e2723; color: #fff; padding: 8px; border: none; border-radius: 5px; cursor: pointer; }
     .carrito-btn:hover { background: #5d4037; }
 
+    /* LIGHTBOX */
+    .lightbox { display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; }
+    .lightbox img { max-width: 90%; max-height: 80%; border-radius: 10px; }
+    .lightbox:target { display: flex; }
+
     /* ACORDEÓN */
     .acordeon { max-width: 900px; margin: 30px auto; }
-    .item { background: #6d4c41; margin: 5px 0; border-radius: 5px; }
+    .item { background: #6d4c41; margin: 5px 0; border-radius: 5px; overflow: hidden; }
     .titulo { padding: 15px; cursor: pointer; font-weight: bold; }
     .contenido { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 15px; }
-
-    /* FAQ */
-    .faq { max-width: 900px; margin: 30px auto; }
-    .faq-item { margin-bottom: 15px; }
-    .faq-item strong { display: block; margin-bottom: 5px; }
 
     /* BOTONES FLOTANTES */
     .whatsapp { position: fixed; bottom: 20px; right: 20px; background: #25d366; padding: 15px; border-radius: 50%; }
@@ -56,63 +56,90 @@
 
   <!-- IMÁGENES DESTACADAS -->
   <section class="destacados">
-    <img src="rape.jpg" alt="Rapé">
-    <img src="kuripe.jpg" alt="Kuripés">
-    <img src="tepi.jpg" alt="Tepis">
+    <img src="rape.jpg" alt="Rapé" onclick="abrirLightbox('rape.jpg')">
+    <img src="kuripe.jpg" alt="Kuripés" onclick="abrirLightbox('kuripe.jpg')">
+    <img src="tepi.jpg" alt="Tepis" onclick="abrirLightbox('tepi.jpg')">
   </section>
 
-  <!-- GALERÍAS -->
+  <!-- GALERÍA DE RAPÉ -->
   <h2>Galería de Rapé</h2>
   <div class="galeria">
     <button class="flecha izquierda" onclick="moverSlide(-1, 'rape')">&#10094;</button>
     <div class="slides" id="galeria-rape">
-      <img src="rape1.jpg"><img src="rape2.jpg"><img src="rape3.jpg"><img src="rape4.jpg">
+      <img src="rape1.jpg" onclick="abrirLightbox('rape1.jpg')">
+      <img src="rape2.jpg" onclick="abrirLightbox('rape2.jpg')">
+      <img src="rape3.jpg" onclick="abrirLightbox('rape3.jpg')">
+      <img src="rape4.jpg" onclick="abrirLightbox('rape4.jpg')">
     </div>
     <button class="flecha derecha" onclick="moverSlide(1, 'rape')">&#10095;</button>
     <button class="carrito-btn">Agregar Rapé al carrito</button>
   </div>
 
+  <!-- GALERÍA DE KURIPÉS -->
   <h2>Galería de Kuripés</h2>
   <div class="galeria">
     <button class="flecha izquierda" onclick="moverSlide(-1, 'kuripe')">&#10094;</button>
     <div class="slides" id="galeria-kuripe">
-      <img src="kuripe1.jpg"><img src="kuripe2.jpg"><img src="kuripe3.jpg"><img src="kuripe4.jpg">
+      <img src="kuripe1.jpg" onclick="abrirLightbox('kuripe1.jpg')">
+      <img src="kuripe2.jpg" onclick="abrirLightbox('kuripe2.jpg')">
+      <img src="kuripe3.jpg" onclick="abrirLightbox('kuripe3.jpg')">
     </div>
     <button class="flecha derecha" onclick="moverSlide(1, 'kuripe')">&#10095;</button>
     <button class="carrito-btn">Agregar Kuripé al carrito</button>
   </div>
 
+  <!-- GALERÍA DE TEPIS -->
   <h2>Galería de Tepis</h2>
   <div class="galeria">
     <button class="flecha izquierda" onclick="moverSlide(-1, 'tepi')">&#10094;</button>
     <div class="slides" id="galeria-tepi">
-      <img src="tepi1.jpg"><img src="tepi2.jpg"><img src="tepi3.jpg"><img src="tepi4.jpg">
+      <img src="tepi1.jpg" onclick="abrirLightbox('tepi1.jpg')">
+      <img src="tepi2.jpg" onclick="abrirLightbox('tepi2.jpg')">
+      <img src="tepi3.jpg" onclick="abrirLightbox('tepi3.jpg')">
     </div>
     <button class="flecha derecha" onclick="moverSlide(1, 'tepi')">&#10095;</button>
     <button class="carrito-btn">Agregar Tepi al carrito</button>
   </div>
 
-  <!-- ACORDEÓN -->
+  <!-- ACORDEÓN VARIEDADES -->
   <h2>Variedades de Rapé</h2>
   <div class="acordeon">
     <div class="item">
       <div class="titulo" onclick="toggleAcordeon(this)">Rapé 1</div>
       <div class="contenido">Descripción detallada del Rapé 1...</div>
     </div>
-    <!-- Repetir para 10 variedades -->
+    <div class="item">
+      <div class="titulo" onclick="toggleAcordeon(this)">Rapé 2</div>
+      <div class="contenido">Descripción detallada del Rapé 2...</div>
+    </div>
+    <!-- Repetir hasta Rapé 10 -->
   </div>
 
-  <!-- FAQ -->
+  <!-- FAQ EN ACORDEÓN -->
   <h2>Preguntas Frecuentes</h2>
-  <div class="faq">
-    <div class="faq-item"><strong>¿Qué es el Rapé medicinal?</strong> El Rapé es...</div>
-    <div class="faq-item"><strong>¿Cómo se aplica correctamente?</strong> Se aplica...</div>
-    <div class="faq-item"><strong>¿Tiene contraindicaciones?</strong> Sí, debe evitarse...</div>
+  <div class="acordeon">
+    <div class="item">
+      <div class="titulo" onclick="toggleAcordeon(this)">¿Qué es el Rapé medicinal?</div>
+      <div class="contenido">El Rapé es una medicina ancestral usada en rituales chamánicos...</div>
+    </div>
+    <div class="item">
+      <div class="titulo" onclick="toggleAcordeon(this)">¿Cómo se aplica correctamente?</div>
+      <div class="contenido">El Rapé se aplica usando kuripé o tepi, respetando su dosis y ritual...</div>
+    </div>
+    <div class="item">
+      <div class="titulo" onclick="toggleAcordeon(this)">¿Tiene contraindicaciones?</div>
+      <div class="contenido">Sí, no se recomienda en embarazadas, hipertensos o personas con problemas respiratorios...</div>
+    </div>
   </div>
 
   <!-- BOTONES -->
   <a href="https://wa.me/549XXXXXXXXXX" class="whatsapp"><img src="whatsapp.png" width="30"></a>
   <div class="musica" onclick="toggleMusica()">🎵</div>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox" onclick="cerrarLightbox()">
+    <img id="imagen-lightbox" src="">
+  </div>
 
   <!-- SCRIPT -->
   <script>
@@ -128,6 +155,14 @@
     function toggleAcordeon(titulo) {
       const contenido = titulo.nextElementSibling;
       contenido.style.maxHeight = contenido.style.maxHeight ? null : contenido.scrollHeight + "px";
+    }
+
+    function abrirLightbox(src) {
+      document.getElementById("imagen-lightbox").src = src;
+      document.getElementById("lightbox").style.display = "flex";
+    }
+    function cerrarLightbox() {
+      document.getElementById("lightbox").style.display = "none";
     }
 
     let musica = new Audio("musica.mp3");
