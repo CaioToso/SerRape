@@ -1,296 +1,138 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ser Rapé</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda de Rapé y Aplicadores</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #E6F9E6; /* Fondo verde claro */
-      color: #5C4033; /* Marrón tabaco para texto */
-    }
-    header {
-      background-color: #FFFFFF;
-      text-align: center;
-      padding: 20px;
-      border-bottom: 1px solid #ddd;
-      color: #5C4033;
-    }
-    header img {
-      height: 80px;
-      width: auto;
-      margin-bottom: 10px;
-    }
-    header h1 {
-      margin: 5px 0;
-      font-size: 26px;
-      color: #5C4033;
-    }
-    header p {
-      margin: 0;
-      font-size: 16px;
-      color: #5C4033;
-    }
-    /* Productos principales */
-    .productos-principales {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      padding: 30px 20px;
-    }
-    .producto {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-      width: 280px;
-      text-align: center;
-      padding: 15px;
-      color: #5C4033;
-    }
-    .producto img {
-      max-width: 100%;
-      border-radius: 5px;
-      margin-bottom: 10px;
-    }
-    .producto h3 {
-      margin: 5px 0;
-      font-size: 18px;
-      color: #5C4033;
-    }
-    .producto p {
-      font-size: 14px;
-      color: #5C4033;
-    }
-    /* Galería */
-    .galeria {
-      padding: 30px 20px;
-    }
-    .galeria h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #5C4033;
-    }
-    .imagenes {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-    }
-    .imagen-item {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-      text-align: center;
-      padding: 10px;
-      color: #5C4033;
-    }
-    .imagen-item img {
-      max-width: 100%;
-      border-radius: 5px;
-      margin-bottom: 5px;
-    }
-    .imagen-item p {
-      font-size: 13px;
-      color: #5C4033;
-      margin: 0 0 8px 0;
-    }
-    .imagen-item button {
-      background: #5C8536; /* verde hoja */
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      cursor: pointer;
-      border-radius: 5px;
-      font-size: 14px;
-      transition: background-color 0.3s ease;
-    }
-    .imagen-item button:hover {
-      background-color: #2E7D32;
-    }
-    /* Botón flotante carrito */
-    .carrito-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: #2E7D32; /* verde hoja */
-      color: white;
-      font-size: 24px;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-      z-index: 10000;
-    }
-    /* Carrito lateral */
-    #carrito {
-      display: none;
-      position: fixed;
-      top: 80px;
-      right: 0;
-      width: 320px;
-      height: calc(100% - 80px);
-      background: #f1f8e9; /* verde hoja muy claro */
-      border-left: 3px solid #2E7D32;
-      padding: 20px;
-      box-shadow: -2px 0 8px rgba(0,0,0,0.15);
-      overflow-y: auto;
-      z-index: 9999;
-      color: #5C4033;
-      font-size: 15px;
-    }
-    #carrito h2 {
-      margin-top: 0;
-      font-size: 22px;
-      border-bottom: 1px solid #2E7D32;
-      padding-bottom: 8px;
-    }
-    #lista-carrito {
-      list-style: none;
-      padding-left: 0;
-      margin-bottom: 20px;
-    }
-    #lista-carrito li {
-      margin-bottom: 10px;
-    }
-    #carrito button {
-      background: #2E7D32;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-      border-radius: 5px;
-      font-size: 16px;
+    body { margin: 0; font-family: 'Arial', sans-serif; background: #8b5e3c; color: #fff; }
+    header { text-align: center; padding: 30px; }
+    header img { width: 150px; }
+    header p { font-size: 1.2em; margin-top: 10px; color: #f4e3d7; }
+    h2 { text-align: center; margin: 40px 0 20px; }
+
+    /* IMÁGENES DESTACADAS */
+    .destacados { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
+    .destacados img { width: 300px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.4); }
+
+    /* GALERÍA */
+    .galeria { position: relative; max-width: 900px; margin: auto; overflow: hidden; }
+    .slides { display: flex; transition: transform 0.5s ease-in-out; }
+    .slides img { width: 300px; margin: 0 10px; border-radius: 10px; }
+    .flecha { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; padding: 10px; cursor: pointer; font-size: 20px; }
+    .izquierda { left: 0; }
+    .derecha { right: 0; }
+    .carrito-btn { display: block; margin: 10px auto; background: #3e2723; color: #fff; padding: 8px; border: none; border-radius: 5px; cursor: pointer; }
+    .carrito-btn:hover { background: #5d4037; }
+
+    /* ACORDEÓN */
+    .acordeon { max-width: 900px; margin: 30px auto; }
+    .item { background: #6d4c41; margin: 5px 0; border-radius: 5px; }
+    .titulo { padding: 15px; cursor: pointer; font-weight: bold; }
+    .contenido { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 15px; }
+
+    /* FAQ */
+    .faq { max-width: 900px; margin: 30px auto; }
+    .faq-item { margin-bottom: 15px; }
+    .faq-item strong { display: block; margin-bottom: 5px; }
+
+    /* BOTONES FLOTANTES */
+    .whatsapp { position: fixed; bottom: 20px; right: 20px; background: #25d366; padding: 15px; border-radius: 50%; }
+    .musica { position: fixed; bottom: 20px; left: 20px; background: #3e2723; padding: 15px; border-radius: 50%; color: white; cursor: pointer; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .destacados img { width: 90%; }
+      .slides img { width: 250px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
   <header>
-    <img src="https://i.postimg.cc/0QC9123k/IMG-20240321-WA0026.png" alt="Logo de mi tienda" />
-    <h1>Ser Rapé</h1>
-    <p>Una breve descripción de tu tienda o marca.</p>
+    <img src="logo.png" alt="Logo de la Tienda">
+    <p>Bienvenido a nuestra tienda de Rapé y Aplicadores artesanales</p>
   </header>
 
-  <!-- Productos principales -->
-  <section>
-    <h2 style="text-align:center; margin-top: 30px; color: #5C4033;">Productos Principales</h2>
-    <div class="productos-principales">
-      <div class="producto">
-        <img src="producto1.jpg" alt="Producto 1" />
-        <h3 contenteditable="true">Producto 1</h3>
-        <p contenteditable="true">Descripción breve del producto 1.</p>
-      </div>
-      <div class="producto">
-        <img src="producto2.jpg" alt="Producto 2" />
-        <h3 contenteditable="true">Producto 2</h3>
-        <p contenteditable="true">Descripción breve del producto 2.</p>
-      </div>
-      <div class="producto">
-        <img src="producto3.jpg" alt="Producto 3" />
-        <h3 contenteditable="true">Producto 3</h3>
-        <p contenteditable="true">Descripción breve del producto 3.</p>
-      </div>
-    </div>
+  <!-- IMÁGENES DESTACADAS -->
+  <section class="destacados">
+    <img src="rape.jpg" alt="Rapé">
+    <img src="kuripe.jpg" alt="Kuripés">
+    <img src="tepi.jpg" alt="Tepis">
   </section>
 
-  <!-- Galería de Producto 1 -->
-  <section class="galeria">
-    <h2>Galería de Producto 1</h2>
-    <div class="imagenes">
-      <script>
-        for(let i=1; i<=10; i++) {
-          document.write(`
-            <div class="imagen-item">
-              <img src="producto1-img${i}.jpg" alt="Producto 1 Imagen ${i}" />
-              <p contenteditable="true">Producto 1 Imagen ${i}</p>
-              <button onclick="agregarAlCarrito('Producto 1 Imagen ${i}', 100)">Agregar al carrito</button>
-            </div>
-          `);
-        }
-      </script>
+  <!-- GALERÍAS -->
+  <h2>Galería de Rapé</h2>
+  <div class="galeria">
+    <button class="flecha izquierda" onclick="moverSlide(-1, 'rape')">&#10094;</button>
+    <div class="slides" id="galeria-rape">
+      <img src="rape1.jpg"><img src="rape2.jpg"><img src="rape3.jpg"><img src="rape4.jpg">
     </div>
-  </section>
-
-  <!-- Galería de Producto 2 -->
-  <section class="galeria">
-    <h2>Galería de Producto 2</h2>
-    <div class="imagenes">
-      <script>
-        for(let i=1; i<=10; i++) {
-          document.write(`
-            <div class="imagen-item">
-              <img src="producto2-img${i}.jpg" alt="Producto 2 Imagen ${i}" />
-              <p contenteditable="true">Producto 2 Imagen ${i}</p>
-              <button onclick="agregarAlCarrito('Producto 2 Imagen ${i}', 120)">Agregar al carrito</button>
-            </div>
-          `);
-        }
-      </script>
-    </div>
-  </section>
-
-  <!-- Galería de Producto 3 -->
-  <section class="galeria">
-    <h2>Galería de Producto 3</h2>
-    <div class="imagenes">
-      <script>
-        for(let i=1; i<=10; i++) {
-          document.write(`
-            <div class="imagen-item">
-              <img src="producto3-img${i}.jpg" alt="Producto 3 Imagen ${i}" />
-              <p contenteditable="true">Producto 3 Imagen ${i}</p>
-              <button onclick="agregarAlCarrito('Producto 3 Imagen ${i}', 150)">Agregar al carrito</button>
-            </div>
-          `);
-        }
-      </script>
-    </div>
-  </section>
-
-  <!-- Carrito -->
-  <div id="carrito">
-    <h2>🛒 Carrito</h2>
-    <ul id="lista-carrito"></ul>
-    <p><strong>Total:</strong> $<span id="total">0</span></p>
-    <button onclick="finalizarCompra()">Finalizar compra</button>
+    <button class="flecha derecha" onclick="moverSlide(1, 'rape')">&#10095;</button>
+    <button class="carrito-btn">Agregar Rapé al carrito</button>
   </div>
 
-  <!-- Botón flotante del carrito -->
-  <button class="carrito-btn" onclick="toggleCarrito()">🛒</button>
+  <h2>Galería de Kuripés</h2>
+  <div class="galeria">
+    <button class="flecha izquierda" onclick="moverSlide(-1, 'kuripe')">&#10094;</button>
+    <div class="slides" id="galeria-kuripe">
+      <img src="kuripe1.jpg"><img src="kuripe2.jpg"><img src="kuripe3.jpg"><img src="kuripe4.jpg">
+    </div>
+    <button class="flecha derecha" onclick="moverSlide(1, 'kuripe')">&#10095;</button>
+    <button class="carrito-btn">Agregar Kuripé al carrito</button>
+  </div>
 
+  <h2>Galería de Tepis</h2>
+  <div class="galeria">
+    <button class="flecha izquierda" onclick="moverSlide(-1, 'tepi')">&#10094;</button>
+    <div class="slides" id="galeria-tepi">
+      <img src="tepi1.jpg"><img src="tepi2.jpg"><img src="tepi3.jpg"><img src="tepi4.jpg">
+    </div>
+    <button class="flecha derecha" onclick="moverSlide(1, 'tepi')">&#10095;</button>
+    <button class="carrito-btn">Agregar Tepi al carrito</button>
+  </div>
+
+  <!-- ACORDEÓN -->
+  <h2>Variedades de Rapé</h2>
+  <div class="acordeon">
+    <div class="item">
+      <div class="titulo" onclick="toggleAcordeon(this)">Rapé 1</div>
+      <div class="contenido">Descripción detallada del Rapé 1...</div>
+    </div>
+    <!-- Repetir para 10 variedades -->
+  </div>
+
+  <!-- FAQ -->
+  <h2>Preguntas Frecuentes</h2>
+  <div class="faq">
+    <div class="faq-item"><strong>¿Qué es el Rapé medicinal?</strong> El Rapé es...</div>
+    <div class="faq-item"><strong>¿Cómo se aplica correctamente?</strong> Se aplica...</div>
+    <div class="faq-item"><strong>¿Tiene contraindicaciones?</strong> Sí, debe evitarse...</div>
+  </div>
+
+  <!-- BOTONES -->
+  <a href="https://wa.me/549XXXXXXXXXX" class="whatsapp"><img src="whatsapp.png" width="30"></a>
+  <div class="musica" onclick="toggleMusica()">🎵</div>
+
+  <!-- SCRIPT -->
   <script>
-    const carrito = [];
-    function toggleCarrito() {
-      const c = document.getElementById('carrito');
-      c.style.display = c.style.display === 'block' ? 'none' : 'block';
+    let index = { rape: 0, kuripe: 0, tepi: 0 };
+
+    function moverSlide(direccion, galeria) {
+      const slides = document.getElementById(`galeria-${galeria}`);
+      const total = slides.children.length;
+      index[galeria] = (index[galeria] + direccion + total) % total;
+      slides.style.transform = `translateX(${-index[galeria] * 320}px)`;
     }
 
-    function agregarAlCarrito(nombre, precio) {
-      carrito.push({ nombre, precio });
-      actualizarCarrito();
+    function toggleAcordeon(titulo) {
+      const contenido = titulo.nextElementSibling;
+      contenido.style.maxHeight = contenido.style.maxHeight ? null : contenido.scrollHeight + "px";
     }
 
-    function actualizarCarrito() {
-      const lista = document.getElementById('lista-carrito');
-      const totalEl = document.getElementById('total');
-      lista.innerHTML = '';
-      let total = 0;
-      carrito.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = `${item.nombre} - $${item.precio}`;
-        lista.appendChild(li);
-        total += item.precio;
-      });
-      totalEl.textContent = total;
-    }
-
-    function finalizarCompra() {
-      alert('¡Gracias por tu compra!');
+    let musica = new Audio("musica.mp3");
+    function toggleMusica() {
+      if (musica.paused) musica.play(); else musica.pause();
     }
   </script>
 
