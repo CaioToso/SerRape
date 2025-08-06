@@ -14,20 +14,9 @@
     }
 
     /* Fondo animado */
-    .fondo {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: -1;
-      overflow: hidden;
-    }
-    .fondo img {
-      will-change: transform;
-      transition: transform 0.2s ease-out;
-    }
-    .montanas, .rio, .hoja, .condor, .serpiente {
-      position: absolute;
-    }
+    .fondo { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
+    .fondo img { will-change: transform; transition: transform 0.2s ease-out; }
+    .montanas, .rio, .hoja, .condor, .serpiente { position: absolute; }
     .montanas { width: 100%; bottom: 0; animation: movimiento-lento 20s linear infinite alternate; }
     .rio { width: 100%; bottom: 0; opacity: 0.7; animation: flujo 10s linear infinite; }
     .hoja { width: 80px; animation: caer 15s linear infinite; }
@@ -58,17 +47,14 @@
     .producto img { width: 100%; border-radius: 8px; cursor: pointer; }
     .producto h3 { margin: 10px 0 5px; }
     .producto p { font-size: 14px; }
-    .producto button {
-      background: #2e7d32; color: white; border: none;
-      padding: 8px 12px; cursor: pointer; border-radius: 6px;
-    }
 
-    /* Galería */
+    /* Galerías */
     .galeria { padding: 20px; }
+    .galeria h2 { text-align: center; margin-bottom: 20px; }
     .imagenes {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 20px; justify-items: center; margin-top: 20px;
+      gap: 20px; justify-items: center;
     }
     .imagen-item {
       background: rgba(255, 255, 255, 0.85);
@@ -83,6 +69,14 @@
     .zoomable { width: 100%; border-radius: 8px; transition: transform 0.3s ease; cursor: pointer; }
     .zoomable:hover { transform: scale(1.1); }
     .imagen-item p { margin: 8px 0; font-size: 14px; }
+    .imagen-item button {
+      background: #2e7d32;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      cursor: pointer;
+      border-radius: 6px;
+    }
 
     /* Carrito */
     .carrito-btn {
@@ -107,25 +101,12 @@
       background: #6b8e23; color: white; font-size: 22px;
       border: none; cursor: pointer;
       box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-      transition: background 0.3s;
     }
-    .sonido-btn:hover { background: #557a1f; }
 
     /* Modal */
-    #modal {
-      display: none;
-      position: fixed; z-index: 10001; left: 0; top: 0;
-      width: 100%; height: 100%; background: rgba(0,0,0,0.8);
-      justify-content: center; align-items: center;
-    }
-    #modal img {
-      max-width: 80%; max-height: 80%;
-      border: 5px solid #fff; border-radius: 10px;
-    }
-    #modal span {
-      position: absolute; top: 20px; right: 30px;
-      color: white; font-size: 40px; cursor: pointer;
-    }
+    #modal { display: none; position: fixed; z-index: 10001; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; }
+    #modal img { max-width: 80%; max-height: 80%; border: 5px solid #fff; border-radius: 10px; }
+    #modal span { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -151,40 +132,62 @@
   <p>Rapé sagrado, Kuripes y Tepís - Conexión con lo ancestral</p>
 </header>
 
-<!-- Productos principales -->
+<!-- Productos principales sin carrito -->
 <section class="productos">
   <div class="producto">
     <img src="rape.jpg" alt="Rapé" onclick="abrirModal(this.src)">
     <h3>Rapé Sagrado</h3>
     <p>Mezcla ancestral para limpieza energética.</p>
-    <button onclick="agregarAlCarrito('Rapé Sagrado', 1500)">Agregar al carrito</button>
   </div>
   <div class="producto">
     <img src="kuripe.jpg" alt="Kuripe" onclick="abrirModal(this.src)">
     <h3>Kuripe</h3>
     <p>Aplicador artesanal hecho a mano.</p>
-    <button onclick="agregarAlCarrito('Kuripe', 2500)">Agregar al carrito</button>
   </div>
   <div class="producto">
     <img src="tepi.jpg" alt="Tepi" onclick="abrirModal(this.src)">
     <h3>Tepi</h3>
     <p>Herramienta tradicional de sanación.</p>
-    <button onclick="agregarAlCarrito('Tepi', 3000)">Agregar al carrito</button>
   </div>
 </section>
 
-<!-- Galería animada -->
+<!-- Galería de Rapé -->
 <section class="galeria">
-  <h2 style="text-align:center;">🌿 Galería Chamánica</h2>
+  <h2>🌿 Galería de Rapé</h2>
   <div class="imagenes">
-    <div class="imagen-item"><img src="rape2.jpg" class="zoomable" onclick="abrirModal(this.src)"><p contenteditable="true">Rapé Fuerza de Jaguar</p><button onclick="agregarAlCarrito('Rapé Fuerza de Jaguar', 1600)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="kuripe2.jpg" class="zoomable" onclick="abrirModal(this.src)"><p contenteditable="true">Kuripe Tribal</p><button onclick="agregarAlCarrito('Kuripe Tribal', 2600)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="tepi2.jpg" class="zoomable" onclick="abrirModal(this.src)"><p contenteditable="true">Tepi Ancestral</p><button onclick="agregarAlCarrito('Tepi Ancestral', 3200)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="plumas.jpg" class="zoomable" onclick="abrirModal(this.src)"><p contenteditable="true">Plumas Chamánicas</p><button onclick="agregarAlCarrito('Plumas Chamánicas', 800)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="rape3.jpg" class="zoomable" onclick="abrirModal(this.src)"><p contenteditable="true">Rapé Visión de Águila</p><button onclick="agregarAlCarrito('Rapé Visión de Águila', 1700)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="kuripe3.jpg" class="zoomable" onclick="abrirModal(this.src)"><p contenteditable="true">Kuripe Serpiente</p><button onclick="agregarAlCarrito('Kuripe Serpiente', 2700)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="tepi3.jpg" class="zoomable" onclick="abrirModal(this.src)"><p contenteditable="true">Tepi Cóndor</p><button onclick="agregarAlCarrito('Tepi Cóndor', 3300)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="amuletos.jpg" class="zoomable" onclick="abrirModal(this.src)"><p contenteditable="true">Amuletos Chamánicos</p><button onclick="agregarAlCarrito('Amuletos Chamánicos', 1200)">Agregar al carrito</button></div>
+    <!-- 10 productos -->
+    <div class="imagen-item"><img src="rape1.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Jaguar</p><button onclick="agregarAlCarrito('Rapé Jaguar', 1500)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="rape2.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Águila</p><button onclick="agregarAlCarrito('Rapé Águila', 1600)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="rape3.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Serpiente</p><button onclick="agregarAlCarrito('Rapé Serpiente', 1700)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="rape4.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Cóndor</p><button onclick="agregarAlCarrito('Rapé Cóndor', 1800)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="rape5.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Ancestral</p><button onclick="agregarAlCarrito('Rapé Ancestral', 1500)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="rape6.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Tribu</p><button onclick="agregarAlCarrito('Rapé Tribu', 1500)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="rape7.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Luna</p><button onclick="agregarAlCarrito('Rapé Luna', 1600)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="rape8.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Sol</p><button onclick="agregarAlCarrito('Rapé Sol', 1700)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="rape9.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Espíritu</p><button onclick="agregarAlCarrito('Rapé Espíritu', 1800)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="rape10.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Selva</p><button onclick="agregarAlCarrito('Rapé Selva', 1900)">Agregar al carrito</button></div>
+  </div>
+</section>
+
+<!-- Galería de Kuripes -->
+<section class="galeria">
+  <h2>🌿 Galería de Kuripes</h2>
+  <div class="imagenes">
+    <!-- 10 productos similares con nombres e imágenes kuripe1 a kuripe10 -->
+    <!-- Ejemplo -->
+    <div class="imagen-item"><img src="kuripe1.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Tribal</p><button onclick="agregarAlCarrito('Kuripe Tribal', 2500)">Agregar al carrito</button></div>
+    <!-- Repetir hasta kuripe10 -->
+  </div>
+</section>
+
+<!-- Galería de Tepís -->
+<section class="galeria">
+  <h2>🌿 Galería de Tepís</h2>
+  <div class="imagenes">
+    <!-- 10 productos similares con nombres e imágenes tepi1 a tepi10 -->
+    <!-- Ejemplo -->
+    <div class="imagen-item"><img src="tepi1.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Cóndor</p><button onclick="agregarAlCarrito('Tepi Cóndor', 3000)">Agregar al carrito</button></div>
+    <!-- Repetir hasta tepi10 -->
   </div>
 </section>
 
@@ -216,7 +219,7 @@
   const sonidoBtn = document.getElementById('sonido-btn');
   let sonidosActivos = true;
 
-  // Efecto Parallax
+  // Parallax
   window.addEventListener('scroll', () => {
     let scrollY = window.scrollY;
     hojas.forEach((hoja, i) => hoja.style.transform = `translateY(${scrollY*(0.15+i*0.05)}px) rotate(${scrollY/5}deg)`);
@@ -231,13 +234,8 @@
 
   sonidoBtn.addEventListener('click', () => {
     sonidosActivos = !sonidosActivos;
-    if (sonidosActivos) {
-      [agua, aves, viento].forEach(s => s.play());
-      sonidoBtn.textContent = '🔊';
-    } else {
-      [agua, aves, viento].forEach(s => s.pause());
-      sonidoBtn.textContent = '🔇';
-    }
+    if (sonidosActivos) { [agua, aves, viento].forEach(s => s.play()); sonidoBtn.textContent='🔊'; }
+    else { [agua, aves, viento].forEach(s => s.pause()); sonidoBtn.textContent='🔇'; }
   });
 
   // Carrito
@@ -264,7 +262,7 @@
   }
   function finalizarCompra() { alert('¡Gracias por tu compra!'); }
 
-  // Modal imágenes
+  // Modal
   function abrirModal(src) {
     document.getElementById('modal').style.display = 'flex';
     document.getElementById('imagen-modal').src = src;
@@ -273,6 +271,7 @@
 </script>
 </body>
 </html>
+
 
 
 
