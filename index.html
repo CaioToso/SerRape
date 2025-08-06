@@ -79,6 +79,41 @@
       border-radius: 6px;
       font-weight: bold;
     }
+/* Sección explicaciones Rapé */
+.explicaciones {
+  background: rgba(255,255,255,0.85);
+  padding: 20px;
+  margin: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.explicaciones h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.accordion {
+  background: #6b4b36;
+  color: white;
+  cursor: pointer;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 16px;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.panel {
+  padding: 10px;
+  display: none;
+  background: #fdf8f2;
+  border-left: 4px solid #6b4b36;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
 
     /* Botón carrito */
     .carrito-btn {
@@ -134,25 +169,25 @@
 
 <!-- Fondo animado -->
 <div class="fondo">
-  <img src="montanas.png" class="montanas" alt="Montañas">
-  <img src="rio.png" class="rio" alt="Río">
-  <img src="hoja.png" class="hoja" style="left:10%;" alt="Hoja">
-  <img src="hoja.png" class="hoja" style="left:50%;" alt="Hoja">
-  <img src="condor.png" class="condor" alt="Cóndor">
-  <img src="serpiente.png" class="serpiente" alt="Serpiente">
+  <img src="https://i.postimg.cc/ydLVzpHd/png-clipart-andean-condor-eagle-california-condor-eagle-animals-hand-thumbnail.png" class="montanas" alt="Montañas">
+  <img src="https://i.postimg.cc/4dxgwv9T/png-clipart-tobacco-tobacco-thumbnail.png" class="hoja" style="left:10%;" alt="Hoja">
+  <img src="https://i.postimg.cc/fyFDV3kQ/png-clipart-footage-leaf-green-video-leaf-white-leaf.png" class="hoja" style="left:50%;" alt="Hoja">
+  <img src="https://i.postimg.cc/ydLVzpHd/png-clipart-andean-condor-eagle-california-condor-eagle-animals-hand-thumbnail.png" class="condor" alt="Cóndor">
+  <img src="https://i.postimg.cc/VsHYGhgZ/gratis-png-mordedura-de-serpiente.png" class="serpiente" alt="Serpiente">
 </div>
 
 <header>
-  <img src="logo.png" alt="Logo chamánico">
-  <h1>Tienda Chamánica</h1>
-  <p>Rapé sagrado, Kuripes y Tepís - Conexión con lo ancestral</p>
+  <img src="https://https://i.postimg.cc/7Zk5xczP/Logo.png" alt="Logo chamánico">
+  <h1>Ser Rapé</h1>
+  <p>Rapé con plantas autóctonas de Las Sierras de Córdoba. 
+  El Rapé es una medicina sagrada y una herramienta de gran poder. Su uso consciente nos ayuda a conectar con nuestro ser, aquietando y callando nuestra mente</p>
 </header>
 
 <!-- BOTONES FLOTANTES -->
 <button class="carrito-btn" onclick="toggleCarrito()">🛒</button>
 <button class="sonido-btn" onclick="toggleSonido()">🎵</button>
-<a href="https://wa.me/TU_NUMERO" target="_blank" class="whatsapp-btn">
-  <img src="whatsapp.png" alt="WhatsApp">
+<a href="https://wa.me/3548407701" target="_blank" class="whatsapp-btn">
+  <img src="https://i.postimg.cc/8cFY375c/png-clipart-whatsapp-whatsapp.png" alt="WhatsApp">
 </a>
 
 <!-- PANEL CARRITO -->
@@ -163,43 +198,43 @@
 
 <!-- PRODUCTOS PRINCIPALES -->
 <section class="productos">
-  <div class="producto"><img src="rape.jpg" alt="Rapé" onclick="abrirModal(this.src)"><h3>Rapé Sagrado</h3><p>Mezcla ancestral para limpieza energética.</p></div>
-  <div class="producto"><img src="kuripe.jpg" alt="Kuripe" onclick="abrirModal(this.src)"><h3>Kuripe</h3><p>Aplicador artesanal hecho a mano.</p></div>
-  <div class="producto"><img src="tepi.jpg" alt="Tepi" onclick="abrirModal(this.src)"><h3>Tepi</h3><p>Herramienta tradicional de sanación.</p></div>
+  <div class="producto"><img src="https://i.postimg.cc/rs9SpCSt/20240815-100334.jpg" alt="Rapé" onclick="abrirModal(this.src)"><h3>Rapé de Las Sierras</h3><p>Alquimie Sagrada Ancestral.</p></div>
+  <div class="producto"><img src="https://i.postimg.cc/8cgGtLfc/20240815-102729.jpg" alt="Kuripe" onclick="abrirModal(this.src)"><h3>Kuripés</h3><p>Auto-aplicadores artesanales hechos a mano.</p></div>
+  <div class="producto"><img src="https://i.postimg.cc/x8fxfdWg/20240815-102230.jpg" alt="Tepi" onclick="abrirModal(this.src)"><h3>Tepis</h3><p>Aplicadores tradicionales artesanales.</p></div>
 </section>
 
 <!-- GALERÍAS DE PRODUCTOS -->
 <section class="galeria">
-  <h2>🌿 Galería de Rapé</h2>
+  <h2>🌿 Nuestros Rapé</h2>
   <div class="imagenes">
     <!-- 10 productos de Rapé -->
-    <div class="imagen-item"><img src="rape1.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Jaguar</p><button onclick="agregarAlCarrito('Rapé Jaguar', 1500)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="rape2.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Águila</p><button onclick="agregarAlCarrito('Rapé Águila', 1600)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="rape3.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Serpiente</p><button onclick="agregarAlCarrito('Rapé Serpiente', 1700)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="rape4.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Cóndor</p><button onclick="agregarAlCarrito('Rapé Cóndor', 1800)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="rape5.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Ancestral</p><button onclick="agregarAlCarrito('Rapé Ancestral', 1500)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="rape6.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Tribu</p><button onclick="agregarAlCarrito('Rapé Tribu', 1600)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="rape7.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Luna</p><button onclick="agregarAlCarrito('Rapé Luna', 1700)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="rape8.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Sol</p><button onclick="agregarAlCarrito('Rapé Sol', 1800)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="rape9.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Espíritu</p><button onclick="agregarAlCarrito('Rapé Espíritu', 1900)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="rape10.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Selva</p><button onclick="agregarAlCarrito('Rapé Selva', 2000)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/pdmRxLpN/IMG-20240722-WA0018.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Artemisa</p><button onclick="agregarAlCarrito('Rapé Jaguar', 1500)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/x14VsVg6/IMG-20240722-WA0013.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Calma</p><button onclick="agregarAlCarrito('Rapé Águila', 1600)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/sxVLjTwB/IMG-20240727-WA0024.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Emociones</p><button onclick="agregarAlCarrito('Rapé Serpiente', 1700)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/wjtGjyck/IMG-20240722-WA0016.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Introspección</p><button onclick="agregarAlCarrito('Rapé Cóndor', 1800)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/L65yxY7M/IMG-20240722-WA0015.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Mentolado</p><button onclick="agregarAlCarrito('Rapé Ancestral', 1500)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/L65yxY7M/IMG-20240722-WA0015.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Silencio</p><button onclick="agregarAlCarrito('Rapé Tribu', 1600)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/DwVq1S36/IMG-20240722-WA0017.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Ortiga</p><button onclick="agregarAlCarrito('Rapé Luna', 1700)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/KYT8XDqS/Olivo.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Olivo</p><button onclick="agregarAlCarrito('Rapé Sol', 1800)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/3NvkwZNT/IMG-20240727-WA0020.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Ceremonial I</p><button onclick="agregarAlCarrito('Rapé Espíritu', 1900)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/mgNmmv40/IMG-20240727-WA0022.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Ceremonial II</p><button onclick="agregarAlCarrito('Rapé Selva', 2000)">Agregar al carrito</button></div>
   </div>
 </section>
 
 <section class="galeria">
-  <h2>🌿 Galería de Kuripes</h2>
+  <h2>🌿 Galería de Kuripés</h2>
   <div class="imagenes">
     <!-- 10 productos de Kuripes -->
-    <div class="imagen-item"><img src="kuripe1.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Tribal</p><button onclick="agregarAlCarrito('Kuripe Tribal', 2500)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="kuripe2.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Espíritu</p><button onclick="agregarAlCarrito('Kuripe Espíritu', 2600)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="kuripe3.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Jaguar</p><button onclick="agregarAlCarrito('Kuripe Jaguar', 2700)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="kuripe4.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Cóndor</p><button onclick="agregarAlCarrito('Kuripe Cóndor', 2800)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="kuripe5.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Sol</p><button onclick="agregarAlCarrito('Kuripe Sol', 2500)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="kuripe6.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Luna</p><button onclick="agregarAlCarrito('Kuripe Luna', 2600)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="kuripe7.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Selva</p><button onclick="agregarAlCarrito('Kuripe Selva', 2700)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="kuripe8.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Río</p><button onclick="agregarAlCarrito('Kuripe Río', 2800)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="kuripe9.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Pájaro</p><button onclick="agregarAlCarrito('Kuripe Pájaro', 2900)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="kuripe10.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Tierra</p><button onclick="agregarAlCarrito('Kuripe Tierra', 3000)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/mkg4rYwr/20240815-101633.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Tribal</p><button onclick="agregarAlCarrito('Kuripe Tribal', 2500)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/W1kvtbM0/20240815-102005.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Espíritu</p><button onclick="agregarAlCarrito('Kuripe Espíritu', 2600)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/zB0m4LrY/20240815-102017.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Jaguar</p><button onclick="agregarAlCarrito('Kuripe Jaguar', 2700)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/FHcMNC4Z/20240815-102113.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Cóndor</p><button onclick="agregarAlCarrito('Kuripe Cóndor', 2800)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/N0DPjWP1/20240815-102036.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Sol</p><button onclick="agregarAlCarrito('Kuripe Sol', 2500)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/N0DPjWP1/20240815-102036.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Luna</p><button onclick="agregarAlCarrito('Kuripe Luna', 2600)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/cCrzjXhf/20240815-101606.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Selva</p><button onclick="agregarAlCarrito('Kuripe Selva', 2700)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/htFYy8d7/20240815-101818.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Río</p><button onclick="agregarAlCarrito('Kuripe Río', 2800)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/wMw65fvJ/20240416-162424.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Pájaro</p><button onclick="agregarAlCarrito('Kuripe Pájaro', 2900)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/Dzf36Q9P/20240416-162535.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Tierra</p><button onclick="agregarAlCarrito('Kuripe Tierra', 3000)">Agregar al carrito</button></div>
   </div>
 </section>
 
@@ -207,16 +242,16 @@
   <h2>🌿 Galería de Tepís</h2>
   <div class="imagenes">
     <!-- 10 productos de Tepís -->
-    <div class="imagen-item"><img src="tepi1.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Cóndor</p><button onclick="agregarAlCarrito('Tepi Cóndor', 3000)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="tepi2.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Jaguar</p><button onclick="agregarAlCarrito('Tepi Jaguar', 3100)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="tepi3.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Águila</p><button onclick="agregarAlCarrito('Tepi Águila', 3200)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="tepi4.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Río</p><button onclick="agregarAlCarrito('Tepi Río', 3300)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="tepi5.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Selva</p><button onclick="agregarAlCarrito('Tepi Selva', 3400)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="tepi6.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Espíritu</p><button onclick="agregarAlCarrito('Tepi Espíritu', 3500)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="tepi7.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Luna</p><button onclick="agregarAlCarrito('Tepi Luna', 3600)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="tepi8.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Sol</p><button onclick="agregarAlCarrito('Tepi Sol', 3700)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="tepi9.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Tierra</p><button onclick="agregarAlCarrito('Tepi Tierra', 3800)">Agregar al carrito</button></div>
-    <div class="imagen-item"><img src="tepi10.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Tribal</p><button onclick="agregarAlCarrito('Tepi Tribal', 3900)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/7YVk2QcZ/20240815-100717.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Cóndor</p><button onclick="agregarAlCarrito('Tepi Cóndor', 3000)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/KjDdtR0H/20240815-100519.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Jaguar</p><button onclick="agregarAlCarrito('Tepi Jaguar', 3100)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/tCX0pNTQ/20240815-100710.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Águila</p><button onclick="agregarAlCarrito('Tepi Águila', 3200)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/nz855v5W/20240815-101443.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Río</p><button onclick="agregarAlCarrito('Tepi Río', 3300)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/ryNbnR9h/20240815-100701.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Selva</p><button onclick="agregarAlCarrito('Tepi Selva', 3400)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/43c2zYdQ/20240326-092512.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Espíritu</p><button onclick="agregarAlCarrito('Tepi Espíritu', 3500)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/BbmmqDY4/20240327-164755.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Luna</p><button onclick="agregarAlCarrito('Tepi Luna', 3600)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/LXRDLvGm/20240416-162332.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Sol</p><button onclick="agregarAlCarrito('Tepi Sol', 3700)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/d0Rmsr3p/20240416-162339.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Tierra</p><button onclick="agregarAlCarrito('Tepi Tierra', 3800)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="https://i.postimg.cc/Dytq1BbR/20240423-171345.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Tribal</p><button onclick="agregarAlCarrito('Tepi Tribal', 3900)">Agregar al carrito</button></div>
   </div>
 </section>
 
@@ -261,9 +296,63 @@
     }
   }
 </script>
+<!-- EXPLICACIÓN DE CADA RAPÉ -->
+<section class="explicaciones">
+  <h2>🌱 Conoce cada Rapé</h2>
+  <div class="item">
+    <button class="accordion">Rapé Jaguar</button>
+    <div class="panel"><p>Potencia la fuerza interior y la conexión con el espíritu guerrero de la selva.</p></div>
+  </div>
+  <div class="item">
+    <button class="accordion">Rapé Águila</button>
+    <div class="panel"><p>Favorece la claridad mental y la visión espiritual, vinculada al cielo y el aire.</p></div>
+  </div>
+  <div class="item">
+    <button class="accordion">Rapé Serpiente</button>
+    <div class="panel"><p>Ideal para procesos de transformación profunda y liberación energética.</p></div>
+  </div>
+  <div class="item">
+    <button class="accordion">Rapé Cóndor</button>
+    <div class="panel"><p>Conexión con lo sagrado y elevación espiritual, trae paz y armonía interior.</p></div>
+  </div>
+  <div class="item">
+    <button class="accordion">Rapé Ancestral</button>
+    <div class="panel"><p>Mezcla tradicional usada para limpiezas energéticas y protección espiritual.</p></div>
+  </div>
+  <div class="item">
+    <button class="accordion">Rapé Tribu</button>
+    <div class="panel"><p>Fortalece el sentido de comunidad y la energía grupal en ceremonias.</p></div>
+  </div>
+  <div class="item">
+    <button class="accordion">Rapé Luna</button>
+    <div class="panel"><p>Ideal para la intuición, sueños y trabajos espirituales nocturnos.</p></div>
+  </div>
+  <div class="item">
+    <button class="accordion">Rapé Sol</button>
+    <div class="panel"><p>Aporta energía vital y enfoque para comenzar el día con claridad.</p></div>
+  </div>
+  <div class="item">
+    <button class="accordion">Rapé Espíritu</button>
+    <div class="panel"><p>Conexión con guías espirituales y apertura del corazón.</p></div>
+  </div>
+  <div class="item">
+    <button class="accordion">Rapé Selva</button>
+    <div class="panel"><p>Profunda limpieza energética, conecta con la fuerza de la naturaleza.</p></div>
+  </div>
+</section>
+// Acordeón explicaciones Rapé
+const accordions = document.querySelectorAll(".accordion");
+accordions.forEach(acc => {
+  acc.addEventListener("click", function() {
+    this.classList.toggle("active");
+    const panel = this.nextElementSibling;
+    panel.style.display = panel.style.display === "block" ? "none" : "block";
+  });
+});
 
 </body>
 </html>
+
 
 
 
