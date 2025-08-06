@@ -1,361 +1,278 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ser Rapé</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Chamánica - Rapé, Kuripes y Tepís</title>
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #E6F9E6;
-      color: #5C4033;
-    }
-    header {
-      background-color: #FFFFFF;
-      text-align: center;
-      padding: 20px;
-      border-bottom: 1px solid #ddd;
-    }
-    header img {
-      height: 150px;
-      width: auto;
-      margin-bottom: 10px;
-    }
-    header h1 {
-      margin: 5px 0;
-      font-size: 26px;
-    }
-    header p {
-      margin: 0;
-      font-size: 16px;
+      font-family: 'Papyrus', cursive;
+      background: linear-gradient(to bottom, #e3f2e1, #c1d8b5);
+      color: #4b2e18;
+      overflow-x: hidden;
     }
 
+    /* Fondo animado */
+    .fondo {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    .fondo img {
+      will-change: transform;
+      transition: transform 0.2s ease-out;
+    }
+    .montanas, .rio, .hoja, .condor, .serpiente {
+      position: absolute;
+    }
+    .montanas { width: 100%; bottom: 0; animation: movimiento-lento 20s linear infinite alternate; }
+    .rio { width: 100%; bottom: 0; opacity: 0.7; animation: flujo 10s linear infinite; }
+    .hoja { width: 80px; animation: caer 15s linear infinite; }
+    .condor { width: 100px; top: 20px; left: -120px; animation: vuelo 25s linear infinite; }
+    .serpiente { width: 150px; bottom: 40px; left: 10%; animation: ondular 6s ease-in-out infinite; }
+
+    @keyframes movimiento-lento { from { transform: translateX(0); } to { transform: translateX(-30px); } }
+    @keyframes flujo { from { transform: translateX(0); } to { transform: translateX(-50px); } }
+    @keyframes caer { 0% { transform: translateY(-100px) rotate(0deg); } 100% { transform: translateY(100vh) rotate(360deg); } }
+    @keyframes vuelo { 0% { left: -120px; top: 50px; } 50% { left: 50%; top: 30px; } 100% { left: 110%; top: 70px; } }
+    @keyframes ondular { 0%,100% { transform: translateX(0) rotate(0deg); } 50% { transform: translateX(20px) rotate(3deg); } }
+
+    /* Header */
+    header { text-align: center; padding: 20px; }
+    header img { width: 100px; animation: flotar 3s ease-in-out infinite; }
+    @keyframes flotar { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    header h1 { font-size: 36px; margin: 10px 0; }
+    header p { font-size: 18px; }
+
     /* Productos principales */
-    .productos-principales {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      padding: 30px 20px;
-    }
+    .productos { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
     .producto {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-      width: 280px;
-      text-align: center;
-      padding: 15px;
+      background: rgba(255,255,255,0.85);
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      width: 220px; text-align: center; padding: 15px;
     }
-    .producto img {
-      max-width: 100%;
-      border-radius: 5px;
-      margin-bottom: 10px;
-      cursor: pointer;
+    .producto img { width: 100%; border-radius: 8px; cursor: pointer; }
+    .producto h3 { margin: 10px 0 5px; }
+    .producto p { font-size: 14px; }
+    .producto button {
+      background: #2e7d32; color: white; border: none;
+      padding: 8px 12px; cursor: pointer; border-radius: 6px;
     }
 
     /* Galería */
-    .galeria {
-      padding: 30px 20px;
-    }
-    .galeria h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+    .galeria { padding: 20px; }
     .imagenes {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px; justify-items: center; margin-top: 20px;
     }
     .imagen-item {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-      text-align: center;
+      background: rgba(255, 255, 255, 0.85);
       padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      width: 180px;
+      transition: transform 0.3s ease;
     }
-    .imagen-item img {
-      max-width: 100%;
-      border-radius: 5px;
-      margin-bottom: 5px;
-      cursor: pointer;
-    }
-    .imagen-item button {
-      background: #5C8536;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    .imagen-item button:hover {
-      background-color: #2E7D32;
-    }
+    .imagen-item:hover { transform: translateY(-5px); }
+    .zoomable { width: 100%; border-radius: 8px; transition: transform 0.3s ease; cursor: pointer; }
+    .zoomable:hover { transform: scale(1.1); }
+    .imagen-item p { margin: 8px 0; font-size: 14px; }
 
-    /* Botón flotante carrito */
+    /* Carrito */
     .carrito-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: #2E7D32;
-      color: white;
-      font-size: 24px;
-      border: none;
-      cursor: pointer;
+      position: fixed; bottom: 20px; right: 20px;
+      width: 50px; height: 50px; border-radius: 50%;
+      background: #388e3c; color: white; font-size: 24px;
+      border: none; cursor: pointer;
       box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-      z-index: 10000;
     }
-
-    /* Carrito lateral */
     #carrito {
       display: none;
-      position: fixed;
-      top: 80px;
-      right: 0;
-      width: 320px;
-      height: calc(100% - 80px);
-      background: #f1f8e9;
-      border-left: 3px solid #2E7D32;
-      padding: 20px;
-      box-shadow: -2px 0 8px rgba(0,0,0,0.15);
-      overflow-y: auto;
-      z-index: 9999;
+      position: fixed; top: 80px; right: 0;
+      width: 320px; height: calc(100% - 80px);
+      background: #f1f8e9; border-left: 3px solid #2E7D32;
+      padding: 20px; overflow-y: auto;
     }
 
-    /* Modal imagen */
+    /* Botón sonido */
+    .sonido-btn {
+      position: fixed; bottom: 80px; right: 20px;
+      width: 50px; height: 50px; border-radius: 50%;
+      background: #6b8e23; color: white; font-size: 22px;
+      border: none; cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      transition: background 0.3s;
+    }
+    .sonido-btn:hover { background: #557a1f; }
+
+    /* Modal */
     #modal {
       display: none;
-      position: fixed;
-      z-index: 10001;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.8);
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
+      position: fixed; z-index: 10001; left: 0; top: 0;
+      width: 100%; height: 100%; background: rgba(0,0,0,0.8);
+      justify-content: center; align-items: center;
     }
     #modal img {
-      max-width: 80%;
-      max-height: 80%;
-      border: 5px solid #fff;
-      border-radius: 10px;
+      max-width: 80%; max-height: 80%;
+      border: 5px solid #fff; border-radius: 10px;
     }
-    #modal span.cerrar {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      color: white;
-      font-size: 40px;
-      cursor: pointer;
+    #modal span {
+      position: absolute; top: 20px; right: 30px;
+      color: white; font-size: 40px; cursor: pointer;
     }
-    /* Flechas navegación */
-    .flecha {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 50px;
-      color: white;
-      cursor: pointer;
-      user-select: none;
-    }
-    .flecha.izq { left: 40px; }
-    .flecha.der { right: 40px; }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <img src="https://i.postimg.cc/0QC9123k/IMG-20240321-WA0026.png" alt="Logo de mi tienda" />
-    <h1>Ser Rapé</h1>
-    <p>Una breve descripción de tu tienda o marca.</p>
-  </header>
+<!-- Sonidos ambientales -->
+<audio id="sonido-agua" src="agua.mp3" loop></audio>
+<audio id="sonido-aves" src="aves.mp3" loop></audio>
+<audio id="sonido-viento" src="viento.mp3" loop></audio>
 
-  <!-- Nuestros Productos -->
-  <section>
-    <h2 style="text-align:center;">Nuestros Productos</h2>
-    <div class="Nuestros Productos">
-      <div class="producto">
-        <img src="https://i.postimg.cc/W1T32c3z/20240815-095747.jpg" alt="Rapé" class="ampliable" />
-        <h3 contenteditable="true">Rapé</h3>
-        <p contenteditable="true">Rapé con plantas autóctonas de Las Sierras de Córdoba.</p>
-      </div>
-      <div class="producto">
-        <img src="https://i.postimg.cc/PfQ9BgB2/20240815-101633.jpg" alt="Kuripés" class="ampliable" />
-        <h3 contenteditable="true">Kuripés</h3>
-        <p contenteditable="true">Artesanales hechos de caña tacuara y decorada con porcelana fria-hilo encerado-pirograbados.</p>
-      </div>
-      <div class="producto">
-        <img src="https://i.postimg.cc/x8fxfdWg/20240815-102230.jpg" alt="Tepis" class="ampliable" />
-        <h3 contenteditable="true">Tepis</h3>
-        <p contenteditable="true">100 % artesanales de caña tacuara y decorados a tu gusto.</p>
-      </div>
-      
-    </div>
-  </section>
-<section>
-  <h2 style="text-align:center;">Artemisa</h2>
-  <div class="imagenes">
-    <div class="imagen-item">
-      <img src="https://i.postimg.cc/rs9SpCSt/20240815-100334.jpg" alt="Foto 1" class="ampliable" />
-      <p contenteditable="true">Artemisa</p>
-      <button onclick="agregarAlCarrito('Foto 1', 100)">Agregar al carrito</button>
-    </div>
-    <div class="imagen-item">
-      <img src="https://i.postimg.cc/sxtRv7ss/20240815-102945.jpg" alt="Foto 2" class="ampliable" />
-      <p contenteditable="true">Calma</p>
-      <button onclick="agregarAlCarrito('Foto 2', 100)">Agregar al carrito</button>
-    </div>
-    <div class="imagen-item">
-      <img src="foto3.jpg" alt="Foto 3" class="ampliable" />
-      <p contenteditable="true">Título foto 3</p>
-      <button onclick="agregarAlCarrito('Foto 3', 100)">Agregar al carrito</button>
-    </div>
-    <div class="imagen-item">
-      <img src="foto4.jpg" alt="Foto 4" class="ampliable" />
-      <p contenteditable="true">Título foto 4</p>
-      <button onclick="agregarAlCarrito('Foto 4', 100)">Agregar al carrito</button>
-    </div>
-    <div class="imagen-item">
-      <img src="foto5.jpg" alt="Foto 5" class="ampliable" />
-      <p contenteditable="true">Título foto 5</p>
-      <button onclick="agregarAlCarrito('Foto 5', 100)">Agregar al carrito</button>
-    </div>
-    <div class="imagen-item">
-      <img src="foto6.jpg" alt="Foto 6" class="ampliable" />
-      <p contenteditable="true">Título foto 6</p>
-      <button onclick="agregarAlCarrito('Foto 6', 100)">Agregar al carrito</button>
-    </div>
-    <div class="imagen-item">
-      <img src="foto7.jpg" alt="Foto 7" class="ampliable" />
-      <p contenteditable="true">Título foto 7</p>
-      <button onclick="agregarAlCarrito('Foto 7', 100)">Agregar al carrito</button>
-    </div>
-    <div class="imagen-item">
-      <img src="foto8.jpg" alt="Foto 8" class="ampliable" />
-      <p contenteditable="true">Título foto 8</p>
-      <button onclick="agregarAlCarrito('Foto 8', 100)">Agregar al carrito</button>
-    </div>
-    <div class="imagen-item">
-      <img src="foto9.jpg" alt="Foto 9" class="ampliable" />
-      <p contenteditable="true">Título foto 9</p>
-      <button onclick="agregarAlCarrito('Foto 9', 100)">Agregar al carrito</button>
-    </div>
-    <div class="imagen-item">
-      <img src="foto10.jpg" alt="Foto 10" class="ampliable" />
-      <p contenteditable="true">Título foto 10</p>
-      <button onclick="agregarAlCarrito('Foto 10', 100)">Agregar al carrito</button>
-    </div>
+<!-- Fondo animado -->
+<div class="fondo">
+  <img src="montanas.png" class="montanas" alt="Montañas">
+  <img src="rio.png" class="rio" alt="Río">
+  <img src="hoja.png" class="hoja" style="left:10%;" alt="Hoja">
+  <img src="hoja.png" class="hoja" style="left:50%;" alt="Hoja">
+  <img src="condor.png" class="condor" alt="Cóndor">
+  <img src="serpiente.png" class="serpiente" alt="Serpiente">
+</div>
+
+<header>
+  <img src="logo.png" alt="Logo chamánico">
+  <h1>Tienda Chamánica</h1>
+  <p>Rapé sagrado, Kuripes y Tepís - Conexión con lo ancestral</p>
+</header>
+
+<!-- Productos principales -->
+<section class="productos">
+  <div class="producto">
+    <img src="rape.jpg" alt="Rapé" onclick="abrirModal(this.src)">
+    <h3>Rapé Sagrado</h3>
+    <p>Mezcla ancestral para limpieza energética.</p>
+    <button onclick="agregarAlCarrito('Rapé Sagrado', 1500)">Agregar al carrito</button>
+  </div>
+  <div class="producto">
+    <img src="kuripe.jpg" alt="Kuripe" onclick="abrirModal(this.src)">
+    <h3>Kuripe</h3>
+    <p>Aplicador artesanal hecho a mano.</p>
+    <button onclick="agregarAlCarrito('Kuripe', 2500)">Agregar al carrito</button>
+  </div>
+  <div class="producto">
+    <img src="tepi.jpg" alt="Tepi" onclick="abrirModal(this.src)">
+    <h3>Tepi</h3>
+    <p>Herramienta tradicional de sanación.</p>
+    <button onclick="agregarAlCarrito('Tepi', 3000)">Agregar al carrito</button>
   </div>
 </section>
 
-<!-- Galería 2 -->
-<section>
-  <h2 style="text-align:center;">Galería de Producto 2</h2>
+<!-- Galería animada -->
+<section class="galeria">
+  <h2 style="text-align:center;">🌿 Galería Chamánica</h2>
   <div class="imagenes">
-    <div class="imagen-item">
-      <img src="foto11.jpg" alt="Foto 11" class="ampliable" />
-      <p contenteditable="true">Título foto 11</p>
-      <button onclick="agregarAlCarrito('Foto 11', 120)">Agregar al carrito</button>
-    </div>
-
-  <section class="galeria">
-    <h2>Galería de Producto 3</h2>
-    <div class="imagenes">
-      <script>
-        for(let i=1; i<=10; i++) {
-          document.write(`
-            <div class="imagen-item">
-              <img src="producto3-img${i}.jpg" alt="Producto 3 Imagen ${i}" class="ampliable" />
-              <p contenteditable="true">Producto 3 Imagen ${i}</p>
-              <button onclick="agregarAlCarrito('Producto 3 Imagen ${i}', 150)">Agregar al carrito</button>
-            </div>
-          `);
-        }
-      </script>
-    </div>
-  </section>
-
-  <!-- Carrito -->
-  <div id="carrito">
-    <h2>🛒 Carrito</h2>
-    <ul id="lista-carrito"></ul>
-    <p><strong>Total:</strong> $<span id="total">0</span></p>
-    <button onclick="finalizarCompra()">Finalizar compra</button>
+    <div class="imagen-item"><img src="rape2.jpg" class="zoomable" onclick="abrirModal(this.src)"><p contenteditable="true">Rapé Fuerza de Jaguar</p><button onclick="agregarAlCarrito('Rapé Fuerza de Jaguar', 1600)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="kuripe2.jpg" class="zoomable" onclick="abrirModal(this.src)"><p contenteditable="true">Kuripe Tribal</p><button onclick="agregarAlCarrito('Kuripe Tribal', 2600)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="tepi2.jpg" class="zoomable" onclick="abrirModal(this.src)"><p contenteditable="true">Tepi Ancestral</p><button onclick="agregarAlCarrito('Tepi Ancestral', 3200)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="plumas.jpg" class="zoomable" onclick="abrirModal(this.src)"><p contenteditable="true">Plumas Chamánicas</p><button onclick="agregarAlCarrito('Plumas Chamánicas', 800)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="rape3.jpg" class="zoomable" onclick="abrirModal(this.src)"><p contenteditable="true">Rapé Visión de Águila</p><button onclick="agregarAlCarrito('Rapé Visión de Águila', 1700)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="kuripe3.jpg" class="zoomable" onclick="abrirModal(this.src)"><p contenteditable="true">Kuripe Serpiente</p><button onclick="agregarAlCarrito('Kuripe Serpiente', 2700)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="tepi3.jpg" class="zoomable" onclick="abrirModal(this.src)"><p contenteditable="true">Tepi Cóndor</p><button onclick="agregarAlCarrito('Tepi Cóndor', 3300)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="amuletos.jpg" class="zoomable" onclick="abrirModal(this.src)"><p contenteditable="true">Amuletos Chamánicos</p><button onclick="agregarAlCarrito('Amuletos Chamánicos', 1200)">Agregar al carrito</button></div>
   </div>
+</section>
 
-  <!-- Botón flotante del carrito -->
-  <button class="carrito-btn" onclick="toggleCarrito()">🛒</button>
+<!-- Carrito -->
+<div id="carrito">
+  <h2>🛒 Carrito</h2>
+  <ul id="lista-carrito"></ul>
+  <p><strong>Total:</strong> $<span id="total">0</span></p>
+  <button onclick="finalizarCompra()">Finalizar compra</button>
+</div>
+<button class="carrito-btn" onclick="toggleCarrito()">🛒</button>
+<button id="sonido-btn" class="sonido-btn">🔊</button>
 
-  <!-- Modal imagen -->
-  <div id="modal">
-    <span class="cerrar" onclick="cerrarModal()">&times;</span>
-    <span class="flecha izq" onclick="cambiarImagen(-1)">&#10094;</span>
-    <img id="imagen-modal" src="" alt="Vista ampliada" />
-    <span class="flecha der" onclick="cambiarImagen(1)">&#10095;</span>
-  </div>
+<!-- Modal -->
+<div id="modal" onclick="cerrarModal()">
+  <span>&times;</span>
+  <img id="imagen-modal" src="" alt="">
+</div>
 
-  <script>
-    /* Carrito */
-    const carrito = [];
-    function toggleCarrito() {
-      const c = document.getElementById('carrito');
-      c.style.display = c.style.display === 'block' ? 'none' : 'block';
-    }
-    function agregarAlCarrito(nombre, precio) {
-      carrito.push({ nombre, precio });
-      actualizarCarrito();
-    }
-    function actualizarCarrito() {
-      const lista = document.getElementById('lista-carrito');
-      const totalEl = document.getElementById('total');
-      lista.innerHTML = '';
-      let total = 0;
-      carrito.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = `${item.nombre} - $${item.precio}`;
-        lista.appendChild(li);
-        total += item.precio;
-      });
-      totalEl.textContent = total;
-    }
-    function finalizarCompra() {
-      alert('¡Gracias por tu compra!');
-    }
+<script>
+  const carrito = [];
+  const hojas = document.querySelectorAll('.hoja');
+  const condor = document.querySelector('.condor');
+  const serpiente = document.querySelector('.serpiente');
 
-    /* Modal imágenes con navegación */
-    const imagenes = [];
-    document.querySelectorAll('.ampliable').forEach(img => imagenes.push(img.src));
-    let indiceActual = 0;
-    function abrirModal(src) {
-      indiceActual = imagenes.indexOf(src);
-      document.getElementById('modal').style.display = 'flex';
-      document.getElementById('imagen-modal').src = src;
-    }
-    function cerrarModal() {
-      document.getElementById('modal').style.display = 'none';
-    }
-    function cambiarImagen(dir) {
-      indiceActual += dir;
-      if (indiceActual < 0) indiceActual = imagenes.length - 1;
-      if (indiceActual >= imagenes.length) indiceActual = 0;
-      document.getElementById('imagen-modal').src = imagenes[indiceActual];
-    }
+  const agua = document.getElementById('sonido-agua');
+  const aves = document.getElementById('sonido-aves');
+  const viento = document.getElementById('sonido-viento');
+  const sonidoBtn = document.getElementById('sonido-btn');
+  let sonidosActivos = true;
 
-    /* Vincular clic en imágenes ampliables */
-    document.querySelectorAll('.ampliable').forEach(img => {
-      img.addEventListener('click', () => abrirModal(img.src));
+  // Efecto Parallax
+  window.addEventListener('scroll', () => {
+    let scrollY = window.scrollY;
+    hojas.forEach((hoja, i) => hoja.style.transform = `translateY(${scrollY*(0.15+i*0.05)}px) rotate(${scrollY/5}deg)`);
+    condor.style.transform = `translateX(${scrollY*0.2}px) translateY(${Math.sin(scrollY*0.01)*10}px)`;
+    serpiente.style.transform = `translateX(${Math.sin(scrollY*0.02)*20}px)`;
+  });
+
+  // Sonidos
+  window.addEventListener('click', () => {
+    [agua, aves, viento].forEach(s => { s.volume=0.2; s.play(); });
+  }, { once: true });
+
+  sonidoBtn.addEventListener('click', () => {
+    sonidosActivos = !sonidosActivos;
+    if (sonidosActivos) {
+      [agua, aves, viento].forEach(s => s.play());
+      sonidoBtn.textContent = '🔊';
+    } else {
+      [agua, aves, viento].forEach(s => s.pause());
+      sonidoBtn.textContent = '🔇';
+    }
+  });
+
+  // Carrito
+  function toggleCarrito() {
+    const c = document.getElementById('carrito');
+    c.style.display = c.style.display === 'block' ? 'none' : 'block';
+  }
+  function agregarAlCarrito(nombre, precio) {
+    carrito.push({ nombre, precio });
+    actualizarCarrito();
+  }
+  function actualizarCarrito() {
+    const lista = document.getElementById('lista-carrito');
+    const totalEl = document.getElementById('total');
+    lista.innerHTML = '';
+    let total = 0;
+    carrito.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = `${item.nombre} - $${item.precio}`;
+      lista.appendChild(li);
+      total += item.precio;
     });
-  </script>
+    totalEl.textContent = total;
+  }
+  function finalizarCompra() { alert('¡Gracias por tu compra!'); }
 
+  // Modal imágenes
+  function abrirModal(src) {
+    document.getElementById('modal').style.display = 'flex';
+    document.getElementById('imagen-modal').src = src;
+  }
+  function cerrarModal() { document.getElementById('modal').style.display = 'none'; }
+</script>
 </body>
 </html>
-
 
 
 
