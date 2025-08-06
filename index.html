@@ -135,7 +135,7 @@
       height: calc(100% - 80px);
       background: #f1f8e9; /* verde hoja muy claro */
       border-left: 3px solid #2E7D32;
-padding: 20px;
+      padding: 20px;
       box-shadow: -2px 0 8px rgba(0,0,0,0.15);
       overflow-y: auto;
       z-index: 9999;
@@ -198,20 +198,53 @@ padding: 20px;
     </div>
   </section>
 
-  <!-- Galería -->
+  <!-- Galería de Producto 1 -->
   <section class="galeria">
-    <h2>Galería de Productos</h2>
+    <h2>Galería de Producto 1</h2>
     <div class="imagenes">
-      <!-- 30 imágenes con botón agregar al carrito -->
-      <!-- Cambiá "imagenX.jpg" y "Título Imagen X" según tus archivos -->
       <script>
-        // Generar 30 items en la galería dinámicamente
-        for(let i=1; i<=30; i++) {
+        for(let i=1; i<=10; i++) {
           document.write(`
             <div class="imagen-item">
-              <img src="imagen${i}.jpg" alt="Imagen ${i}" />
-              <p contenteditable="true">Título Imagen ${i}</p>
-              <button onclick="agregarAlCarrito('Imagen ${i}', 100)">Agregar al carrito</button>
+              <img src="producto1-img${i}.jpg" alt="Producto 1 Imagen ${i}" />
+              <p contenteditable="true">Producto 1 Imagen ${i}</p>
+              <button onclick="agregarAlCarrito('Producto 1 Imagen ${i}', 100)">Agregar al carrito</button>
+            </div>
+          `);
+        }
+      </script>
+    </div>
+  </section>
+
+  <!-- Galería de Producto 2 -->
+  <section class="galeria">
+    <h2>Galería de Producto 2</h2>
+    <div class="imagenes">
+      <script>
+        for(let i=1; i<=10; i++) {
+          document.write(`
+            <div class="imagen-item">
+              <img src="producto2-img${i}.jpg" alt="Producto 2 Imagen ${i}" />
+              <p contenteditable="true">Producto 2 Imagen ${i}</p>
+              <button onclick="agregarAlCarrito('Producto 2 Imagen ${i}', 120)">Agregar al carrito</button>
+            </div>
+          `);
+        }
+      </script>
+    </div>
+  </section>
+
+  <!-- Galería de Producto 3 -->
+  <section class="galeria">
+    <h2>Galería de Producto 3</h2>
+    <div class="imagenes">
+      <script>
+        for(let i=1; i<=10; i++) {
+          document.write(`
+            <div class="imagen-item">
+              <img src="producto3-img${i}.jpg" alt="Producto 3 Imagen ${i}" />
+              <p contenteditable="true">Producto 3 Imagen ${i}</p>
+              <button onclick="agregarAlCarrito('Producto 3 Imagen ${i}', 150)">Agregar al carrito</button>
             </div>
           `);
         }
