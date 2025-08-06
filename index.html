@@ -1,325 +1,321 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ser Rapé - Rapé, Kuripes y Tepís</title>
-<style>
-  <!-- MODAL ZOOM IMÁGENES CON FLECHAS -->
-<div id="modal" class="modal">
-  <span class="close" onclick="cerrarModal()">&times;</span>
-  <button class="flecha izquierda" onclick="cambiarImagen(-1)">&#10094;</button>
-  <img id="modal-img" src="" alt="Imagen ampliada">
-  <button class="flecha derecha" onclick="cambiarImagen(1)">&#10095;</button>
-</div>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ser Rapé - Rapé, Kuripes y Tepís</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Papyrus', cursive;
+      background: url('https://www.transparenttextures.com/patterns/natural-paper.png') repeat, #e3f2e1;
+      color: #4b2e18;
+      overflow-x: hidden;
+    }
+    /* Header */
+    header {
+      text-align: center;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    header img {
+      width: 120px;
+      margin: 0 auto;
+      display: block;
+    }
+    header h1 {
+      font-size: 36px;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+    header p {
+      font-size: 18px;
+      font-weight: bold;
+      max-width: 700px;
+      margin: 0 auto;
+      color: #4b2e18;
+    }
 
-  body {
-    margin: 0;
-    font-family: 'Papyrus', cursive;
-    background: url('https://www.transparenttextures.com/patterns/natural-paper.png') repeat, #e3f2e1;
-    color: #4b2e18; /* marrón tabaco */
-    overflow-x: hidden;
-  }
-  /* Header */
-  #modal {
-  display: none;
-  position: fixed; 
-  z-index: 10001; 
-  left: 0; top: 0; 
-  width: 100%; height: 100%; 
-  background: rgba(0,0,0,0.8); 
-  justify-content: center; 
-  align-items: center;
-  flex-direction: row;
-  gap: 10px;
-}
+    /* Productos principales */
+    .productos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+    .producto {
+      background: rgba(255,255,255,0.85);
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      width: 220px;
+      text-align: center;
+      padding: 15px;
+      font-weight: bold;
+      cursor: default;
+    }
+    .producto img {
+      width: 100%;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .producto h3 {
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+    .producto p {
+      font-size: 14px;
+      font-weight: bold;
+      color: #4b2e18;
+    }
 
-#modal img {
-  max-width: 80%; 
-  max-height: 80%; 
-  border: 5px solid #fff; 
-  border-radius: 10px;
-}
+    /* Galerías */
+    section.galeria {
+      padding: 20px 40px;
+    }
+    section.galeria h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: bold;
+      font-size: 28px;
+    }
+    .imagenes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      justify-items: center;
+    }
+    .imagen-item {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      width: 180px;
+      font-weight: bold;
+      transition: transform 0.3s ease;
+      cursor: default;
+      user-select: none;
+    }
+    .imagen-item:hover {
+      transform: translateY(-5px);
+    }
+    .zoomable {
+      width: 100%;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .zoomable:hover {
+      transform: scale(1.1);
+    }
+    .imagen-item p {
+      margin: 8px 0;
+      font-size: 14px;
+      font-weight: bold;
+      color: #4b2e18;
+    }
+    .imagen-item button {
+      background: #2e7d32;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      cursor: pointer;
+      border-radius: 6px;
+      font-weight: bold;
+      user-select: none;
+    }
 
-#modal .close {
-  position: absolute; 
-  top: 20px; 
-  right: 30px; 
-  color: white; 
-  font-size: 40px; 
-  cursor: pointer;
-}
+    /* Sección explicaciones Rapé */
+    .explicaciones {
+      background: rgba(255,255,255,0.85);
+      padding: 20px 40px;
+      margin: 30px auto;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      max-width: 900px;
+      font-weight: bold;
+      color: #4b2e18;
+    }
+    .explicaciones h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: bold;
+      font-size: 28px;
+    }
+    .accordion {
+      background: #6b4b36;
+      color: white;
+      cursor: pointer;
+      padding: 12px 20px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 16px;
+      border-radius: 8px;
+      margin-bottom: 5px;
+      font-weight: bold;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    .accordion:hover {
+      background-color: #4e3727;
+    }
+    .panel {
+      padding: 12px 20px;
+      display: none;
+      background: #fdf8f2;
+      border-left: 4px solid #6b4b36;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #4b2e18;
+      white-space: pre-wrap;
+    }
 
-.flecha {
-  background: rgba(255,255,255,0.3);
-  border: none;
-  color: white;
-  font-size: 40px;
-  cursor: pointer;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  align-self: center;
-  user-select: none;
-  transition: background 0.3s;
-}
+    /* Botón carrito */
+    .carrito-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #6b8e23;
+      color: white;
+      font-size: 28px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      z-index: 1000;
+      user-select: none;
+    }
+    #carrito {
+      display: none;
+      position: fixed;
+      top: 80px;
+      right: 0;
+      width: 320px;
+      height: calc(100% - 80px);
+      background: #f1f8e9;
+      border-left: 3px solid #2e7d32;
+      padding: 20px;
+      overflow-y: auto;
+      font-weight: bold;
+      color: #4b2e18;
+      z-index: 999;
+    }
+    #carrito h3 {
+      margin-top: 0;
+      font-weight: bold;
+      font-size: 22px;
+      color: #2e7d32;
+    }
+    #carrito ul {
+      list-style: none;
+      padding-left: 0;
+      max-height: 70vh;
+      overflow-y: auto;
+      margin-bottom: 15px;
+    }
+    #carrito ul li {
+      margin-bottom: 8px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+    }
+    #carrito button {
+      background: #2e7d32;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 8px;
+      width: 100%;
+      user-select: none;
+    }
 
-.flecha:hover {
-  background: rgba(255,255,255,0.7);
-}
+    /* Botón WhatsApp */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 1000;
+    }
+    .whatsapp-btn img {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: transform 0.3s;
+      user-select: none;
+    }
+    .whatsapp-btn img:hover {
+      transform: scale(1.1);
+    }
 
-.flecha.izquierda {
-  margin-right: 10px;
-}
+    /* Modal de imagen ampliada */
+    #modal {
+      display: none;
+      position: fixed;
+      z-index: 10001;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    #modal img {
+      max-width: 80%;
+      max-height: 80%;
+      border: 5px solid #fff;
+      border-radius: 10px;
+      user-select: none;
+    }
+    #modal span.close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 40px;
+      cursor: pointer;
+      user-select: none;
+    }
+    /* Flechas para cambiar imagen */
+    #modal button.nav {
+      background: rgba(255,255,255,0.7);
+      border: none;
+      font-size: 36px;
+      cursor: pointer;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      margin: 10px;
+      user-select: none;
+    }
 
-.flecha.derecha {
-  margin-left: 10px;
-}
-
-  header {
-    text-align: center;
-    padding: 20px;
-  }
-  header img {
-    width: 120px;
-    border-radius: 10px;
-    display: block;
-    margin: 0 auto 10px auto;
-  }
-  header h1 {
-    font-size: 36px;
-    margin: 10px 0 5px;
-    font-weight: bold;
-  }
-  header p {
-    font-size: 18px;
-    font-weight: bold;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-
-  /* Productos principales */
-  .productos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-  }
-  .producto {
-    background: rgba(255,255,255,0.85);
-    border-radius: 12px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-    width: 220px;
-    text-align: center;
-    padding: 15px;
-  }
-  .producto img {
-    width: 100%;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  .producto h3 {
-    margin: 10px 0 5px;
-    font-weight: 900;
-  }
-  .producto p {
-    font-size: 14px;
-    font-weight: 900;
-  }
-
-  /* Galerías */
-  .galeria {
-    padding: 20px;
-  }
-  .galeria h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-weight: 900;
-  }
-  .imagenes {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 20px;
-    justify-items: center;
-  }
-  .imagen-item {
-    background: rgba(255, 255, 255, 0.85);
-    padding: 10px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    width: 180px;
-    transition: none;
-    font-weight: 900;
-  }
-  .imagen-item:hover {
-    transform: none;
-  }
-  .zoomable {
-    width: 100%;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: none;
-  }
-  .imagen-item p {
-    margin: 8px 0;
-    font-size: 14px;
-    font-weight: 900;
-  }
-  .imagen-item button {
-    background: #388e3c; /* verde hoja */
-    color: white;
-    border: none;
-    padding: 6px 10px;
-    cursor: pointer;
-    border-radius: 6px;
-    font-weight: 900;
-  }
-
-  /* Sección explicaciones Rapé */
-  .explicaciones {
-    background: rgba(255,255,255,0.85);
-    padding: 20px;
-    margin: 30px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  }
-  .explicaciones h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-weight: 900;
-  }
-  .accordion {
-    background: #6b4b36;
-    color: white;
-    cursor: pointer;
-    padding: 12px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 16px;
-    border-radius: 8px;
-    margin-bottom: 5px;
-    font-weight: 900;
-  }
-  .panel {
-    padding: 10px;
-    display: none;
-    background: #fdf8f2;
-    border-left: 4px solid #6b4b36;
-    margin-bottom: 10px;
-    font-weight: 900;
-  }
-
-  /* Botón carrito */
-  .carrito-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: #388e3c;
-    color: white;
-    font-size: 24px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    z-index: 1000;
-  }
-  #carrito {
-    display: none;
-    position: fixed;
-    top: 80px;
-    right: 0;
-    width: 320px;
-    height: calc(100% - 80px);
-    background: #f1f8e9;
-    border-left: 3px solid #2E7D32;
-    padding: 20px;
-    overflow-y: auto;
-    font-weight: 900;
-    z-index: 999;
-  }
-
-  /* Botón sonido */
-  .sonido-btn {
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: #6b8e23;
-    color: white;
-    font-size: 22px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    z-index: 1000;
-  }
-
-  /* Botón WhatsApp */
-  .whatsapp-btn {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    z-index: 1000;
-  }
-  .whatsapp-btn img {
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    cursor: pointer;
-    transition: none;
-  }
-
-  /* Modal */
-  #modal {
-    display: none;
-    position: fixed;
-    z-index: 10001;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    justify-content: center;
-    align-items: center;
-  }
-  #modal img {
-    max-width: 80%;
-    max-height: 80%;
-    border: 5px solid #fff;
-    border-radius: 10px;
-  }
-  #modal span {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    color: white;
-    font-size: 40px;
-    cursor: pointer;
-  }
-</style>
+  </style>
 </head>
 <body>
 
 <header>
   <img src="https://i.postimg.cc/0QC9123k/IMG-20240321-WA0026.jpg" alt="Logo chamánico" />
   <h1>Ser Rapé</h1>
-  <p>Rapé con plantas autóctonas de Las Sierras de Córdoba.<br />
-  El Rapé es una medicina sagrada y una herramienta de gran poder.<br />
-  Su uso consciente nos ayuda a conectar con nuestro ser, aquietando y callando nuestra mente.</p>
+  <p>
+    Rapé con plantas autóctonas de Las Sierras de Córdoba.<br />
+    El Rapé es una medicina sagrada y una herramienta de gran poder.<br />
+    Su uso consciente nos ayuda a conectar con nuestro ser, aquietando y callando nuestra mente.
+  </p>
 </header>
 
 <!-- BOTONES FLOTANTES -->
 <button class="carrito-btn" onclick="toggleCarrito()">🛒</button>
-<button class="sonido-btn" onclick="toggleSonido()">🎵</button>
-<a href="https://wa.me/3548407701" target="_blank" class="whatsapp-btn" title="Enviar mensaje WhatsApp">
+<a href="https://wa.me/3548407701" target="_blank" class="whatsapp-btn" aria-label="Contactar por WhatsApp">
   <img src="https://i.postimg.cc/8cFY375c/png-clipart-whatsapp-whatsapp.png" alt="WhatsApp" />
 </a>
 
@@ -331,9 +327,11 @@
 </div>
 
 <!-- MODAL ZOOM IMÁGENES -->
-<div id="modal" onclick="cerrarModal()">
-  <span onclick="cerrarModal()">&times;</span>
-  <img id="modal-img" />
+<div id="modal" onclick="cerrarModal(event)">
+  <button class="nav" onclick="cambiarImagen(-1)" aria-label="Imagen anterior">&#8592;</button>
+  <img id="modal-img" alt="Imagen ampliada" />
+  <button class="nav" onclick="cambiarImagen(1)" aria-label="Imagen siguiente">&#8594;</button>
+  <span class="close" onclick="cerrarModal(event)">&times;</span>
 </div>
 
 <!-- PRODUCTOS PRINCIPALES -->
@@ -358,7 +356,7 @@
 <!-- GALERÍAS DE PRODUCTOS -->
 <section class="galeria">
   <h2>🌿 Nuestros Rapé</h2>
-  <div class="imagenes">
+  <div class="imagenes" id="galeria-rape">
     <div class="imagen-item">
       <img src="https://i.postimg.cc/pdmRxLpN/IMG-20240722-WA0018.jpg" class="zoomable" alt="Rapé Artemisa" onclick="abrirModal(this.src)" />
       <p>Rapé Artemisa</p>
@@ -414,7 +412,7 @@
 
 <section class="galeria">
   <h2>🌿 Galería de Kuripés</h2>
-  <div class="imagenes">
+  <div class="imagenes" id="galeria-kuripes">
     <div class="imagen-item">
       <img src="https://i.postimg.cc/mkg4rYwr/20240815-101633.jpg" class="zoomable" alt="Kuripe Tribal" onclick="abrirModal(this.src)" />
       <p>Kuripe Tribal</p>
@@ -426,282 +424,190 @@
       <button onclick="agregarAlCarrito('Kuripe Espíritu', 2600)">Agregar al carrito</button>
     </div>
     <div class="imagen-item">
+      <img src="https://i.postimg.cc/zB0m4LrY/20240815-102017.jpg" class="zoomable" alt="Kuripe Jaguar" onclick
+    <div class="imagen-item">
       <img src="https://i.postimg.cc/zB0m4LrY/20240815-102017.jpg" class="zoomable" alt="Kuripe Jaguar" onclick="abrirModal(this.src)" />
       <p>Kuripe Jaguar</p>
       <button onclick="agregarAlCarrito('Kuripe Jaguar', 2700)">Agregar al carrito</button>
     </div>
     <div class="imagen-item">
-      <img src="https://i.postimg.cc/FHcMNC4Z/20240815-102113.jpg" class="zoomable" alt="Kuripe Cóndor" onclick="abrirModal(this.src)" />
-      <p>Kuripe Cóndor</p>
-      <button onclick="agregarAlCarrito('Kuripe Cóndor', 2800)">Agregar al carrito</button>
+      <img src="https://i.postimg.cc/GpYwTj31/20240815-102146.jpg" class="zoomable" alt="Kuripe Espíritu Verde" onclick="abrirModal(this.src)" />
+      <p>Kuripe Espíritu Verde</p>
+      <button onclick="agregarAlCarrito('Kuripe Espíritu Verde', 2800)">Agregar al carrito</button>
     </div>
     <div class="imagen-item">
-      <img src="https://i.postimg.cc/N0DPjWP1/20240815-102036.jpg" class="zoomable" alt="Kuripe Sol" onclick="abrirModal(this.src)" />
+      <img src="https://i.postimg.cc/LXmnxk1f/20240815-102318.jpg" class="zoomable" alt="Kuripe Águila" onclick="abrirModal(this.src)" />
+      <p>Kuripe Águila</p>
+      <button onclick="agregarAlCarrito('Kuripe Águila', 2900)">Agregar al carrito</button>
+    </div>
+    <div class="imagen-item">
+      <img src="https://i.postimg.cc/hGHVjCVy/20240815-102333.jpg" class="zoomable" alt="Kuripe Sol" onclick="abrirModal(this.src)" />
       <p>Kuripe Sol</p>
-      <button onclick="agregarAlCarrito('Kuripe Sol', 2500)">Agregar al carrito</button>
+      <button onclick="agregarAlCarrito('Kuripe Sol', 3000)">Agregar al carrito</button>
     </div>
     <div class="imagen-item">
-      <img src="https://i.postimg.cc/N0DPjWP1/20240815-102036.jpg" class="zoomable" alt="Kuripe Luna" onclick="abrirModal(this.src)" />
-      <p>Kuripe Luna</p>
-      <button onclick="agregarAlCarrito('Kuripe Luna', 2600)">Agregar al carrito</button>
+      <img src="https://i.postimg.cc/Y0d45NLw/20240815-102350.jpg" class="zoomable" alt="Kuripe Estrella" onclick="abrirModal(this.src)" />
+      <p>Kuripe Estrella</p>
+      <button onclick="agregarAlCarrito('Kuripe Estrella', 3100)">Agregar al carrito</button>
     </div>
     <div class="imagen-item">
-      <img src="https://i.postimg.cc/cCrzjXhf/20240815-101606.jpg" class="zoomable" alt="Kuripe Selva" onclick="abrirModal(this.src)" />
-      <p>Kuripe Selva</p>
-      <button onclick="agregarAlCarrito('Kuripe Selva', 2700)">Agregar al carrito</button>
+      <img src="https://i.postimg.cc/jSXV8xYH/20240815-102415.jpg" class="zoomable" alt="Kuripe Espíritu Azul" onclick="abrirModal(this.src)" />
+      <p>Kuripe Espíritu Azul</p>
+      <button onclick="agregarAlCarrito('Kuripe Espíritu Azul', 3200)">Agregar al carrito</button>
     </div>
     <div class="imagen-item">
-      <img src="https://i.postimg.cc/htFYy
-    <!-- Continúa galería Kuripés -->
-    <div class="imagen-item">
-      <img src="https://i.postimg.cc/htFYy8rV/20240815-101621.jpg" class="zoomable" alt="Kuripe Raíz" onclick="abrirModal(this.src)" />
-      <p>Kuripe Raíz</p>
-      <button onclick="agregarAlCarrito('Kuripe Raíz', 2800)">Agregar al carrito</button>
+      <img src="https://i.postimg.cc/50hMJbHT/20240815-102429.jpg" class="zoomable" alt="Kuripe Tierra" onclick="abrirModal(this.src)" />
+      <p>Kuripe Tierra</p>
+      <button onclick="agregarAlCarrito('Kuripe Tierra', 3300)">Agregar al carrito</button>
     </div>
     <div class="imagen-item">
-      <img src="https://i.postimg.cc/fWkmtN5Z/20240815-101642.jpg" class="zoomable" alt="Kuripe Viento" onclick="abrirModal(this.src)" />
-      <p>Kuripe Viento</p>
-      <button onclick="agregarAlCarrito('Kuripe Viento', 2900)">Agregar al carrito</button>
+      <img src="https://i.postimg.cc/8PGr1vmC/20240815-102453.jpg" class="zoomable" alt="Kuripe Llama" onclick="abrirModal(this.src)" />
+      <p>Kuripe Llama</p>
+      <button onclick="agregarAlCarrito('Kuripe Llama', 3400)">Agregar al carrito</button>
     </div>
-    <div class="imagen-item">
-  <img src="https://i.postimg.cc/XYNtqV9v/20240815-101650.jpg" class="zoomable" alt="Kuripe Cielo" onclick="abrirModal(this.src)" />
-  <p>Kuripe Cielo</p>
-  <button onclick="agregarAlCarrito('Kuripe Cielo', 3000)">Agregar al carrito</button>
-</div>
   </div>
 </section>
 
 <section class="galeria">
   <h2>🌿 Galería de Tepís</h2>
-  <div class="imagenes">
+  <div class="imagenes" id="galeria-tepis">
     <div class="imagen-item">
-      <img src="https://i.postimg.cc/bvQGbyvK/20240815-102230.jpg" class="zoomable" alt="Tepi Clásico" onclick="abrirModal(this.src)" />
-      <p>Tepi Clásico</p>
-      <button onclick="agregarAlCarrito('Tepi Clásico', 3000)">Agregar al carrito</button>
+      <img src="https://i.postimg.cc/cJWYQ4RJ/20240815-102615.jpg" class="zoomable" alt="Tepi Águila" onclick="abrirModal(this.src)" />
+      <p>Tepi Águila</p>
+      <button onclick="agregarAlCarrito('Tepi Águila', 3500)">Agregar al carrito</button>
     </div>
     <div class="imagen-item">
-      <img src="https://i.postimg.cc/CLpsY8ct/20240815-102240.jpg" class="zoomable" alt="Tepi Ancestral" onclick="abrirModal(this.src)" />
-      <p>Tepi Ancestral</p>
-      <button onclick="agregarAlCarrito('Tepi Ancestral', 3100)">Agregar al carrito</button>
-    </div>
-    <div class="imagen-item">
-      <img src="https://i.postimg.cc/YS5t3kYM/20240815-102250.jpg" class="zoomable" alt="Tepi Selva" onclick="abrirModal(this.src)" />
-      <p>Tepi Selva</p>
-      <button onclick="agregarAlCarrito('Tepi Selva', 3200)">Agregar al carrito</button>
-    </div>
-    <div class="imagen-item">
-      <img src="https://i.postimg.cc/pTQZW3GL/20240815-102255.jpg" class="zoomable" alt="Tepi Ritual" onclick="abrirModal(this.src)" />
-      <p>Tepi Ritual</p>
-      <button onclick="agregarAlCarrito('Tepi Ritual', 3300)">Agregar al carrito</button>
-    </div>
-    <div class="imagen-item">
-      <img src="https://i.postimg.cc/1tR1S9T8/20240815-102300.jpg" class="zoomable" alt="Tepi Espíritu" onclick="abrirModal(this.src)" />
-      <p>Tepi Espíritu</p>
-      <button onclick="agregarAlCarrito('Tepi Espíritu', 3400)">Agregar al carrito</button>
-    </div>
-    <div class="imagen-item">
-      <img src="https://i.postimg.cc/MpCH9VYQ/20240815-102305.jpg" class="zoomable" alt="Tepi Jaguar" onclick="abrirModal(this.src)" />
+      <img src="https://i.postimg.cc/Znnf1Qks/20240815-102635.jpg" class="zoomable" alt="Tepi Jaguar" onclick="abrirModal(this.src)" />
       <p>Tepi Jaguar</p>
-      <button onclick="agregarAlCarrito('Tepi Jaguar', 3500)">Agregar al carrito</button>
+      <button onclick="agregarAlCarrito('Tepi Jaguar', 3600)">Agregar al carrito</button>
     </div>
     <div class="imagen-item">
-      <img src="https://i.postimg.cc/Rh1LSP2v/20240815-102310.jpg" class="zoomable" alt="Tepi Cóndor" onclick="abrirModal(this.src)" />
-      <p>Tepi Cóndor</p>
-      <button onclick="agregarAlCarrito('Tepi Cóndor', 3600)">Agregar al carrito</button>
+      <img src="https://i.postimg.cc/MpN2H14D/20240815-102653.jpg" class="zoomable" alt="Tepi Solar" onclick="abrirModal(this.src)" />
+      <p>Tepi Solar</p>
+      <button onclick="agregarAlCarrito('Tepi Solar', 3700)">Agregar al carrito</button>
     </div>
     <div class="imagen-item">
-      <img src="https://i.postimg.cc/7Lk9jG0Q/20240815-102315.jpg" class="zoomable" alt="Tepi Sol" onclick="abrirModal(this.src)" />
-      <p>Tepi Sol</p>
-      <button onclick="agregarAlCarrito('Tepi Sol', 3700)">Agregar al carrito</button>
+      <img src="https://i.postimg.cc/gjTyHdLP/20240815-102707.jpg" class="zoomable" alt="Tepi Espíritu Verde" onclick="abrirModal(this.src)" />
+      <p>Tepi Espíritu Verde</p>
+      <button onclick="agregarAlCarrito('Tepi Espíritu Verde', 3800)">Agregar al carrito</button>
     </div>
     <div class="imagen-item">
-      <img src="https://i.postimg.cc/W1Q6Ln5L/20240815-102320.jpg" class="zoomable" alt="Tepi Luna" onclick="abrirModal(this.src)" />
-      <p>Tepi Luna</p>
-      <button onclick="agregarAlCarrito('Tepi Luna', 3800)">Agregar al carrito</button>
+      <img src="https://i.postimg.cc/DwTt7ytK/20240815-102719.jpg" class="zoomable" alt="Tepi Estrella" onclick="abrirModal(this.src)" />
+      <p>Tepi Estrella</p>
+      <button onclick="agregarAlCarrito('Tepi Estrella', 3900)">Agregar al carrito</button>
     </div>
     <div class="imagen-item">
-      <img src="https://i.postimg.cc/mgLvTRyp/20240815-102325.jpg" class="zoomable" alt="Tepi Raíz" onclick="abrirModal(this.src)" />
-      <p>Tepi Raíz</p>
-      <button onclick="agregarAlCarrito('Tepi Raíz', 3900)">Agregar al carrito</button>
+      <img src="https://i.postimg.cc/fRgDcrkL/20240815-102730.jpg" class="zoomable" alt="Tepi Tierra" onclick="abrirModal(this.src)" />
+      <p>Tepi Tierra</p>
+      <button onclick="agregarAlCarrito('Tepi Tierra', 4000)">Agregar al carrito</button>
+    </div>
+    <div class="imagen-item">
+      <img src="https://i.postimg.cc/zX0dCGnG/20240815-102742.jpg" class="zoomable" alt="Tepi Fuego" onclick="abrirModal(this.src)" />
+      <p>Tepi Fuego</p>
+      <button onclick="agregarAlCarrito('Tepi Fuego', 4100)">Agregar al carrito</button>
+    </div>
+    <div class="imagen-item">
+      <img src="https://i.postimg.cc/Pf8rr4mM/20240815-102752.jpg" class="zoomable" alt="Tepi Espíritu Azul" onclick="abrirModal(this.src)" />
+      <p>Tepi Espíritu Azul</p>
+      <button onclick="agregarAlCarrito('Tepi Espíritu Azul', 4200)">Agregar al carrito</button>
+    </div>
+    <div class="imagen-item">
+      <img src="https://i.postimg.cc/BnCKzxKP/20240815-102804.jpg" class="zoomable" alt="Tepi Llama" onclick="abrirModal(this.src)" />
+      <p>Tepi Llama</p>
+      <button onclick="agregarAlCarrito('Tepi Llama', 4300)">Agregar al carrito</button>
+    </div>
+    <div class="imagen-item">
+      <img src="https://i.postimg.cc/VsgP12MC/20240815-102815.jpg" class="zoomable" alt="Tepi Sagrado" onclick="abrirModal(this.src)" />
+      <p>Tepi Sagrado</p>
+      <button onclick="agregarAlCarrito('Tepi Sagrado', 4400)">Agregar al carrito</button>
     </div>
   </div>
 </section>
-<!-- Explicación individual de cada variedad de Rapé -->
+
+<!-- EXPLICACIONES DE RAPÉ -->
 <section class="explicaciones">
-  <h2>🌱 Explicación de cada variedad de Rapé</h2>
-
-  <button class="accordion">Rapé Jaguar</button>
-  <div class="panel">
-    <p>Potencia la fuerza interior y la conexión con el espíritu guerrero de la selva.</p>
-  </div>
-
-  <button class="accordion">Rapé Águila</button>
-  <div class="panel">
-    <p>Favorece la claridad mental y la visión espiritual, vinculada al cielo y el aire.</p>
-  </div>
-
-  <button class="accordion">Rapé Serpiente</button>
-  <div class="panel">
-    <p>Ideal para procesos de transformación profunda y liberación energética.</p>
-  </div>
-
-  <button class="accordion">Rapé Cóndor</button>
-  <div class="panel">
-    <p>Conexión con lo sagrado y elevación espiritual, trae paz y armonía interior.</p>
-  </div>
-
-  <button class="accordion">Rapé Ancestral</button>
-  <div class="panel">
-    <p>Mezcla tradicional usada para limpiezas energéticas y protección espiritual.</p>
-  </div>
-
-  <button class="accordion">Rapé Tribu</button>
-  <div class="panel">
-    <p>Fortalece el sentido de comunidad y la energía grupal en ceremonias.</p>
-  </div>
-
-  <button class="accordion">Rapé Luna</button>
-  <div class="panel">
-    <p>Ideal para la intuición, sueños y trabajos espirituales nocturnos.</p>
-  </div>
-
-  <button class="accordion">Rapé Sol</button>
-  <div class="panel">
-    <p>Aporta energía vital y enfoque para comenzar el día con claridad.</p>
-  </div>
-
-  <button class="accordion">Rapé Espíritu</button>
-  <div class="panel">
-    <p>Conexión con guías espirituales y apertura del corazón.</p>
-  </div>
-
-  <button class="accordion">Rapé Selva</button>
-  <div class="panel">
-    <p>Profunda limpieza energética, conecta con la fuerza de la naturaleza.</p>
-  </div>
-</section>
-
-<!-- Sección explicaciones Rapé con acordeón -->
-<section class="explicaciones">
-  <h2>📚 Explicaciones sobre el Rapé</h2>
-  <button class="accordion">¿Qué es el Rapé?</button>
-  <div class="panel">
-    <p>El Rapé es un polvo medicinal tradicional hecho a base de plantas autóctonas, utilizado ancestralmente para la purificación, concentración y conexión espiritual.</p>
-  </div>
-  <button class="accordion">¿Cómo se usa el Rapé?</button>
-  <div class="panel">
-    <p>Se aplica mediante el kuripé o tepi en las fosas nasales. Ayuda a limpiar la mente, despejar energías y facilitar estados de meditación profunda.</p>
-  </div>
-  <button class="accordion">Beneficios del Rapé</button>
-  <div class="panel">
-    <p>Entre otros, ayuda a mejorar la respiración, aumentar la concentración, desintoxicar energías negativas y conectar con la sabiduría ancestral.</p>
-  </div>
+  <h2>🌱 Significado de cada variedad de Rapé</h2>
+  <button class="accordion">Rapé Artemisa</button>
+  <div class="panel">Purifica energéticamente, facilita los sueños lúcidos y la conexión con lo sutil.</div>
+  <button class="accordion">Rapé Calma</button>
+  <div class="panel">Relaja la mente, disminuye la ansiedad y ayuda en estados de nerviosismo.</div>
+  <button class="accordion">Rapé Emociones</button>
+  <div class="panel">Abre el corazón y ayuda en la liberación emocional, trayendo paz interna.</div>
+  <button class="accordion">Rapé Introspección</button>
+  <div class="panel">Facilita la meditación profunda y la auto-observación consciente.</div>
+  <button class="accordion">Rapé Mentolado</button>
+  <div class="panel">Refresca y despeja, indicado para abrir vías respiratorias y armonizar.</div>
+  <button class="accordion">Rapé Silencio</button>
+  <div class="panel">Lleva a un estado de quietud interna, ideal para meditaciones largas.</div>
+  <button class="accordion">Rapé Ortiga</button>
+  <div class="panel">Limpia y fortalece el campo energético, otorga vitalidad física.</div>
+  <button class="accordion">Rapé Olivo</button>
+  <div class="panel">Proporciona paz y armonía espiritual, conexión con la naturaleza.</div>
+  <button class="accordion">Rapé Ceremonial I</button>
+  <div class="panel">Preparado para ceremonias profundas, con plantas de poder específicas.</div>
+  <button class="accordion">Rapé Ceremonial II</button>
+  <div class="panel">Ideal para rituales ancestrales, abre portales de visión y claridad.</div>
 </section>
 
 <script>
-  // Modal para zoom imágenes
-  function abrirModal(src) {
-    const modal = document.getElementById('modal');
-    const modalImg = document.getElementById('modal-img');
-    modal.style.display = 'flex';
-    modalImg.src = src;
+  // Carrito
+  let carrito = [];
+  function agregarAlCarrito(producto, precio) {
+    carrito.push({ producto, precio });
+    renderizarCarrito();
   }
-  function cerrarModal() {
-    document.getElementById('modal').style.display = 'none';
-  }
-
-  // Toggle carrito
-  function toggleCarrito() {
-    const carrito = document.getElementById('carrito');
-    if (carrito.style.display === 'block') {
-      carrito.style.display = 'none';
-    } else {
-      carrito.style.display = 'block';
-    }
-  }
-
-  // Carrito funcional simple
-  let carritoItems = [];
-
-  function agregarAlCarrito(nombre, precio) {
-    carritoItems.push({nombre, precio});
-    actualizarCarrito();
-  }
-
-  function actualizarCarrito() {
+  function renderizarCarrito() {
     const lista = document.getElementById('lista-carrito');
     lista.innerHTML = '';
-    carritoItems.forEach((item, index) => {
+    carrito.forEach((item, index) => {
       const li = document.createElement('li');
-      li.textContent = `${item.nombre} - $${item.precio}`;
+      li.textContent = `${item.producto} - $${item.precio}`;
       lista.appendChild(li);
     });
   }
-
+  function toggleCarrito() {
+    const c = document.getElementById('carrito');
+    c.style.display = c.style.display === 'block' ? 'none' : 'block';
+  }
   function checkout() {
-    if(carritoItems.length === 0){
-      alert('Tu carrito está vacío.');
-      return;
-    }
-    let total = carritoItems.reduce((sum, item) => sum + item.precio, 0);
-    alert(`Total a pagar: $${total}\nGracias por tu compra!`);
-    carritoItems = [];
-    actualizarCarrito();
-    toggleCarrito();
+    alert('Gracias por tu compra. Te contactaremos por WhatsApp.');
   }
 
-  // Toggle sonido (solo icono, sin sonido real)
-  let sonidoActivo = false;
-  function toggleSonido() {
-    sonidoActivo = !sonidoActivo;
-    const btn = document.querySelector('.sonido-btn');
-    btn.textContent = sonidoActivo ? '🔊' : '🎵';
-  }
-
-  // Acordeón explicaciones
-  const accordions = document.getElementsByClassName("accordion");
-  for (let i=0; i < accordions.length; i++){
-    accordions[i].addEventListener('click', function() {
-      this.classList.toggle('active');
-      const panel = this.nextElementSibling;
-      if(panel.style.display === 'block'){
-        panel.style.display = 'none';
-      } else {
-        panel.style.display = 'block';
-      }
+  // Modal imágenes
+  let imagenesModal = [];
+  let indiceActual = 0;
+  document.querySelectorAll('.zoomable').forEach(img => {
+    img.addEventListener('click', () => {
+      imagenesModal = Array.from(document.querySelectorAll('.zoomable')).map(i => i.src);
+      indiceActual = imagenesModal.indexOf(img.src);
     });
+  });
+  function abrirModal(src) {
+    document.getElementById('modal').style.display = 'flex';
+    document.getElementById('modal-img').src = src;
+    indiceActual = imagenesModal.indexOf(src);
   }
-  const todasImagenes = Array.from(document.querySelectorAll('.zoomable')).map(img => img.src);
-let indiceActual = 0;
+  function cerrarModal(e) {
+    if (e.target.id === 'modal' || e.target.className === 'close') {
+      document.getElementById('modal').style.display = 'none';
+    }
+  }
+  function cambiarImagen(dir) {
+    indiceActual = (indiceActual + dir + imagenesModal.length) % imagenesModal.length;
+    document.getElementById('modal-img').src = imagenesModal[indiceActual];
+  }
 
-function abrirModal(src) {
-  indiceActual = todasImagenes.indexOf(src);
-  mostrarImagenModal();
-  document.getElementById('modal').style.display = 'flex';
-}
-
-function mostrarImagenModal() {
-  const modalImg = document.getElementById('modal-img');
-  modalImg.src = todasImagenes[indiceActual];
-}
-
-function cambiarImagen(direccion) {
-  indiceActual += direccion;
-  if (indiceActual < 0) indiceActual = todasImagenes.length - 1;
-  if (indiceActual >= todasImagenes.length) indiceActual = 0;
-  mostrarImagenModal();
-}
-
-function cerrarModal() {
-  document.getElementById('modal').style.display = 'none';
-}
-
+  // Acordeón
+  document.querySelectorAll('.accordion').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const panel = btn.nextElementSibling;
+      panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+    });
+  });
 </script>
 
 </body>
 </html>
-
-
 
 
 
