@@ -33,8 +33,8 @@
     header { text-align: center; padding: 20px; }
     header img { width: 100px; animation: flotar 3s ease-in-out infinite; }
     @keyframes flotar { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-    header h1 { font-size: 36px; margin: 10px 0; }
-    header p { font-size: 18px; }
+    header h1 { font-size: 36px; margin: 10px 0; font-weight: bold; }
+    header p { font-size: 18px; font-weight: bold; }
 
     /* Productos principales */
     .productos { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
@@ -45,12 +45,12 @@
       width: 220px; text-align: center; padding: 15px;
     }
     .producto img { width: 100%; border-radius: 8px; cursor: pointer; }
-    .producto h3 { margin: 10px 0 5px; }
-    .producto p { font-size: 14px; }
+    .producto h3 { margin: 10px 0 5px; font-weight: bold; }
+    .producto p { font-size: 14px; font-weight: bold; }
 
     /* Galerías */
     .galeria { padding: 20px; }
-    .galeria h2 { text-align: center; margin-bottom: 20px; }
+    .galeria h2 { text-align: center; margin-bottom: 20px; font-weight: bold; }
     .imagenes {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -64,11 +64,12 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
       width: 180px;
       transition: transform 0.3s ease;
+      font-weight: bold;
     }
     .imagen-item:hover { transform: translateY(-5px); }
     .zoomable { width: 100%; border-radius: 8px; transition: transform 0.3s ease; cursor: pointer; }
     .zoomable:hover { transform: scale(1.1); }
-    .imagen-item p { margin: 8px 0; font-size: 14px; }
+    .imagen-item p { margin: 8px 0; font-size: 14px; font-weight: bold; }
     .imagen-item button {
       background: #2e7d32;
       color: white;
@@ -76,6 +77,7 @@
       padding: 6px 10px;
       cursor: pointer;
       border-radius: 6px;
+      font-weight: bold;
     }
 
     /* Carrito */
@@ -91,7 +93,7 @@
       position: fixed; top: 80px; right: 0;
       width: 320px; height: calc(100% - 80px);
       background: #f1f8e9; border-left: 3px solid #2E7D32;
-      padding: 20px; overflow-y: auto;
+      padding: 20px; overflow-y: auto; font-weight: bold;
     }
 
     /* Botón sonido */
@@ -102,6 +104,23 @@
       border: none; cursor: pointer;
       box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     }
+
+    /* Botón WhatsApp */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 1000;
+    }
+    .whatsapp-btn img {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .whatsapp-btn img:hover { transform: scale(1.1); }
 
     /* Modal */
     #modal { display: none; position: fixed; z-index: 10001; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; }
@@ -134,28 +153,15 @@
 
 <!-- Productos principales sin carrito -->
 <section class="productos">
-  <div class="producto">
-    <img src="rape.jpg" alt="Rapé" onclick="abrirModal(this.src)">
-    <h3>Rapé Sagrado</h3>
-    <p>Mezcla ancestral para limpieza energética.</p>
-  </div>
-  <div class="producto">
-    <img src="kuripe.jpg" alt="Kuripe" onclick="abrirModal(this.src)">
-    <h3>Kuripe</h3>
-    <p>Aplicador artesanal hecho a mano.</p>
-  </div>
-  <div class="producto">
-    <img src="tepi.jpg" alt="Tepi" onclick="abrirModal(this.src)">
-    <h3>Tepi</h3>
-    <p>Herramienta tradicional de sanación.</p>
-  </div>
+  <div class="producto"><img src="rape.jpg" alt="Rapé" onclick="abrirModal(this.src)"><h3>Rapé Sagrado</h3><p>Mezcla ancestral para limpieza energética.</p></div>
+  <div class="producto"><img src="kuripe.jpg" alt="Kuripe" onclick="abrirModal(this.src)"><h3>Kuripe</h3><p>Aplicador artesanal hecho a mano.</p></div>
+  <div class="producto"><img src="tepi.jpg" alt="Tepi" onclick="abrirModal(this.src)"><h3>Tepi</h3><p>Herramienta tradicional de sanación.</p></div>
 </section>
 
 <!-- Galería de Rapé -->
 <section class="galeria">
   <h2>🌿 Galería de Rapé</h2>
   <div class="imagenes">
-    <!-- 10 productos -->
     <div class="imagen-item"><img src="rape1.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Jaguar</p><button onclick="agregarAlCarrito('Rapé Jaguar', 1500)">Agregar al carrito</button></div>
     <div class="imagen-item"><img src="rape2.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Águila</p><button onclick="agregarAlCarrito('Rapé Águila', 1600)">Agregar al carrito</button></div>
     <div class="imagen-item"><img src="rape3.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Rapé Serpiente</p><button onclick="agregarAlCarrito('Rapé Serpiente', 1700)">Agregar al carrito</button></div>
@@ -173,10 +179,16 @@
 <section class="galeria">
   <h2>🌿 Galería de Kuripes</h2>
   <div class="imagenes">
-    <!-- 10 productos similares con nombres e imágenes kuripe1 a kuripe10 -->
-    <!-- Ejemplo -->
     <div class="imagen-item"><img src="kuripe1.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Tribal</p><button onclick="agregarAlCarrito('Kuripe Tribal', 2500)">Agregar al carrito</button></div>
-    <!-- Repetir hasta kuripe10 -->
+    <div class="imagen-item"><img src="kuripe2.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Espíritu</p><button onclick="agregarAlCarrito('Kuripe Espíritu', 2600)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="kuripe3.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Jaguar</p><button onclick="agregarAlCarrito('Kuripe Jaguar', 2700)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="kuripe4.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Cóndor</p><button onclick="agregarAlCarrito('Kuripe Cóndor', 2800)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="kuripe5.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Sol</p><button onclick="agregarAlCarrito('Kuripe Sol', 2500)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="kuripe6.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Luna</p><button onclick="agregarAlCarrito('Kuripe Luna', 2600)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="kuripe7.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Selva</p><button onclick="agregarAlCarrito('Kuripe Selva', 2700)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="kuripe8.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Río</p><button onclick="agregarAlCarrito('Kuripe Río', 2800)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="kuripe9.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Pájaro</p><button onclick="agregarAlCarrito('Kuripe Pájaro', 2900)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="kuripe10.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Kuripe Tierra</p><button onclick="agregarAlCarrito('Kuripe Tierra', 3000)">Agregar al carrito</button></div>
   </div>
 </section>
 
@@ -184,94 +196,13 @@
 <section class="galeria">
   <h2>🌿 Galería de Tepís</h2>
   <div class="imagenes">
-    <!-- 10 productos similares con nombres e imágenes tepi1 a tepi10 -->
-    <!-- Ejemplo -->
     <div class="imagen-item"><img src="tepi1.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Cóndor</p><button onclick="agregarAlCarrito('Tepi Cóndor', 3000)">Agregar al carrito</button></div>
-    <!-- Repetir hasta tepi10 -->
-  </div>
-</section>
-
-<!-- Carrito -->
-<div id="carrito">
-  <h2>🛒 Carrito</h2>
-  <ul id="lista-carrito"></ul>
-  <p><strong>Total:</strong> $<span id="total">0</span></p>
-  <button onclick="finalizarCompra()">Finalizar compra</button>
-</div>
-<button class="carrito-btn" onclick="toggleCarrito()">🛒</button>
-<button id="sonido-btn" class="sonido-btn">🔊</button>
-
-<!-- Modal -->
-<div id="modal" onclick="cerrarModal()">
-  <span>&times;</span>
-  <img id="imagen-modal" src="" alt="">
-</div>
-
-<script>
-  const carrito = [];
-  const hojas = document.querySelectorAll('.hoja');
-  const condor = document.querySelector('.condor');
-  const serpiente = document.querySelector('.serpiente');
-
-  const agua = document.getElementById('sonido-agua');
-  const aves = document.getElementById('sonido-aves');
-  const viento = document.getElementById('sonido-viento');
-  const sonidoBtn = document.getElementById('sonido-btn');
-  let sonidosActivos = true;
-
-  // Parallax
-  window.addEventListener('scroll', () => {
-    let scrollY = window.scrollY;
-    hojas.forEach((hoja, i) => hoja.style.transform = `translateY(${scrollY*(0.15+i*0.05)}px) rotate(${scrollY/5}deg)`);
-    condor.style.transform = `translateX(${scrollY*0.2}px) translateY(${Math.sin(scrollY*0.01)*10}px)`;
-    serpiente.style.transform = `translateX(${Math.sin(scrollY*0.02)*20}px)`;
-  });
-
-  // Sonidos
-  window.addEventListener('click', () => {
-    [agua, aves, viento].forEach(s => { s.volume=0.2; s.play(); });
-  }, { once: true });
-
-  sonidoBtn.addEventListener('click', () => {
-    sonidosActivos = !sonidosActivos;
-    if (sonidosActivos) { [agua, aves, viento].forEach(s => s.play()); sonidoBtn.textContent='🔊'; }
-    else { [agua, aves, viento].forEach(s => s.pause()); sonidoBtn.textContent='🔇'; }
-  });
-
-  // Carrito
-  function toggleCarrito() {
-    const c = document.getElementById('carrito');
-    c.style.display = c.style.display === 'block' ? 'none' : 'block';
-  }
-  function agregarAlCarrito(nombre, precio) {
-    carrito.push({ nombre, precio });
-    actualizarCarrito();
-  }
-  function actualizarCarrito() {
-    const lista = document.getElementById('lista-carrito');
-    const totalEl = document.getElementById('total');
-    lista.innerHTML = '';
-    let total = 0;
-    carrito.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = `${item.nombre} - $${item.precio}`;
-      lista.appendChild(li);
-      total += item.precio;
-    });
-    totalEl.textContent = total;
-  }
-  function finalizarCompra() { alert('¡Gracias por tu compra!'); }
-
-  // Modal
-  function abrirModal(src) {
-    document.getElementById('modal').style.display = 'flex';
-    document.getElementById('imagen-modal').src = src;
-  }
-  function cerrarModal() { document.getElementById('modal').style.display = 'none'; }
-</script>
-</body>
-</html>
-
+    <div class="imagen-item"><img src="tepi2.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Jaguar</p><button onclick="agregarAlCarrito('Tepi Jaguar', 3100)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="tepi3.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Espíritu</p><button onclick="agregarAlCarrito('Tepi Espíritu', 3200)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="tepi4.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Sol</p><button onclick="agregarAlCarrito('Tepi Sol', 3300)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="tepi5.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Luna</p><button onclick="agregarAlCarrito('Tepi Luna', 3400)">Agregar al carrito</button></div>
+    <div class="imagen-item"><img src="tepi6.jpg" class="zoomable" onclick="abrirModal(this.src)"><p>Tepi Río</p><button onclick="agregarAlCarrito('Tepi Río', 3500)">Agregar al carrito</button></div>
+    <
 
 
 
