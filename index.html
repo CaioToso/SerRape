@@ -5,29 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tienda Chamánica - Rapé, Kuripes y Tepís</title>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Papyrus', cursive;
-      background: linear-gradient(to bottom, #e3f2e1, #c1d8b5);
-      color: #4b2e18;
-      overflow-x: hidden;
     }
-
-    /* Fondo animado */
-    .fondo { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
-    .fondo img { will-change: transform; transition: transform 0.2s ease-out; }
-    .montanas, .rio, .hoja, .condor, .serpiente { position: absolute; }
-    .montanas { width: 100%; bottom: 0; animation: movimiento-lento 20s linear infinite alternate; }
-    .rio { width: 100%; bottom: 0; opacity: 0.7; animation: flujo 10s linear infinite; }
-    .hoja { width: 80px; animation: caer 15s linear infinite; }
-    .condor { width: 100px; top: 20px; left: -120px; animation: vuelo 25s linear infinite; }
-    .serpiente { width: 150px; bottom: 40px; left: 10%; animation: ondular 6s ease-in-out infinite; }
-
-    @keyframes movimiento-lento { from { transform: translateX(0); } to { transform: translateX(-30px); } }
-    @keyframes flujo { from { transform: translateX(0); } to { transform: translateX(-50px); } }
-    @keyframes caer { 0% { transform: translateY(-100px) rotate(0deg); } 100% { transform: translateY(100vh) rotate(360deg); } }
-    @keyframes vuelo { 0% { left: -120px; top: 50px; } 50% { left: 50%; top: 30px; } 100% { left: 110%; top: 70px; } }
-    @keyframes ondular { 0%,100% { transform: translateX(0) rotate(0deg); } 50% { transform: translateX(20px) rotate(3deg); } }
 
     /* Header */
     header { text-align: center; padding: 20px; }
@@ -166,15 +144,6 @@
 <audio id="sonido-agua" src="agua.mp3" loop></audio>
 <audio id="sonido-aves" src="aves.mp3" loop></audio>
 <audio id="sonido-viento" src="viento.mp3" loop></audio>
-
-<!-- Fondo animado -->
-<div class="fondo">
-  <img src="https://i.postimg.cc/ydLVzpHd/png-clipart-andean-condor-eagle-california-condor-eagle-animals-hand-thumbnail.png" class="montanas" alt="Montañas">
-  <img src="https://i.postimg.cc/4dxgwv9T/png-clipart-tobacco-tobacco-thumbnail.png" class="hoja" style="left:10%;" alt="Hoja">
-  <img src="https://i.postimg.cc/fyFDV3kQ/png-clipart-footage-leaf-green-video-leaf-white-leaf.png" class="hoja" style="left:50%;" alt="Hoja">
-  <img src="https://i.postimg.cc/ydLVzpHd/png-clipart-andean-condor-eagle-california-condor-eagle-animals-hand-thumbnail.png" class="condor" alt="Cóndor">
-  <img src="https://i.postimg.cc/VsHYGhgZ/gratis-png-mordedura-de-serpiente.png" class="serpiente" alt="Serpiente">
-</div>
 
 <header>
   <img src="https://https://i.postimg.cc/7Zk5xczP/Logo.png" alt="Logo chamánico">
@@ -352,6 +321,7 @@ accordions.forEach(acc => {
 
 </body>
 </html>
+
 
 
 
