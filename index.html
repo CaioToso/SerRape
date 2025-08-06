@@ -176,10 +176,10 @@
     <p>Una breve descripción de tu tienda o marca.</p>
   </header>
 
-  <!-- Productos principales -->
+  <!-- Nuestros Productos -->
   <section>
-    <h2 style="text-align:center;">Productos Principales</h2>
-    <div class="productos-principales">
+    <h2 style="text-align:center;">Nuestros Productos</h2>
+    <div class="Nuestros Productos">
       <div class="producto">
         <img src="https://i.postimg.cc/W1T32c3z/20240815-095747.jpg" alt="Rapé" class="ampliable" />
         <h3 contenteditable="true">Rapé</h3>
@@ -195,43 +195,74 @@
         <h3 contenteditable="true">Tepis</h3>
         <p contenteditable="true">100 % artesanales de caña tacuara y decorados a tu gusto.</p>
       </div>
+      
     </div>
   </section>
+<section>
+  <h2 style="text-align:center;">Artemisa</h2>
+  <div class="imagenes">
+    <div class="imagen-item">
+      <img src="https://i.postimg.cc/rs9SpCSt/20240815-100334.jpg" alt="Foto 1" class="ampliable" />
+      <p contenteditable="true">Artemisa</p>
+      <button onclick="agregarAlCarrito('Foto 1', 100)">Agregar al carrito</button>
+    </div>
+    <div class="imagen-item">
+      <img src="https://i.postimg.cc/sxtRv7ss/20240815-102945.jpg" alt="Foto 2" class="ampliable" />
+      <p contenteditable="true">Calma</p>
+      <button onclick="agregarAlCarrito('Foto 2', 100)">Agregar al carrito</button>
+    </div>
+    <div class="imagen-item">
+      <img src="foto3.jpg" alt="Foto 3" class="ampliable" />
+      <p contenteditable="true">Título foto 3</p>
+      <button onclick="agregarAlCarrito('Foto 3', 100)">Agregar al carrito</button>
+    </div>
+    <div class="imagen-item">
+      <img src="foto4.jpg" alt="Foto 4" class="ampliable" />
+      <p contenteditable="true">Título foto 4</p>
+      <button onclick="agregarAlCarrito('Foto 4', 100)">Agregar al carrito</button>
+    </div>
+    <div class="imagen-item">
+      <img src="foto5.jpg" alt="Foto 5" class="ampliable" />
+      <p contenteditable="true">Título foto 5</p>
+      <button onclick="agregarAlCarrito('Foto 5', 100)">Agregar al carrito</button>
+    </div>
+    <div class="imagen-item">
+      <img src="foto6.jpg" alt="Foto 6" class="ampliable" />
+      <p contenteditable="true">Título foto 6</p>
+      <button onclick="agregarAlCarrito('Foto 6', 100)">Agregar al carrito</button>
+    </div>
+    <div class="imagen-item">
+      <img src="foto7.jpg" alt="Foto 7" class="ampliable" />
+      <p contenteditable="true">Título foto 7</p>
+      <button onclick="agregarAlCarrito('Foto 7', 100)">Agregar al carrito</button>
+    </div>
+    <div class="imagen-item">
+      <img src="foto8.jpg" alt="Foto 8" class="ampliable" />
+      <p contenteditable="true">Título foto 8</p>
+      <button onclick="agregarAlCarrito('Foto 8', 100)">Agregar al carrito</button>
+    </div>
+    <div class="imagen-item">
+      <img src="foto9.jpg" alt="Foto 9" class="ampliable" />
+      <p contenteditable="true">Título foto 9</p>
+      <button onclick="agregarAlCarrito('Foto 9', 100)">Agregar al carrito</button>
+    </div>
+    <div class="imagen-item">
+      <img src="foto10.jpg" alt="Foto 10" class="ampliable" />
+      <p contenteditable="true">Título foto 10</p>
+      <button onclick="agregarAlCarrito('Foto 10', 100)">Agregar al carrito</button>
+    </div>
+  </div>
+</section>
 
-  <!-- Galerías -->
-  <section class="galeria">
-    <h2>Galería de Producto 1</h2>
-    <div class="imagenes">
-      <script>
-        for(let i=1; i<=10; i++) {
-          document.write(`
-            <div class="imagen-item">
-              <img src="producto1-img${i}.jpg" alt="Producto 1 Imagen ${i}" class="ampliable" />
-              <p contenteditable="true">Producto 1 Imagen ${i}</p>
-              <button onclick="agregarAlCarrito('Producto 1 Imagen ${i}', 100)">Agregar al carrito</button>
-            </div>
-          `);
-        }
-      </script>
+<!-- Galería 2 -->
+<section>
+  <h2 style="text-align:center;">Galería de Producto 2</h2>
+  <div class="imagenes">
+    <div class="imagen-item">
+      <img src="foto11.jpg" alt="Foto 11" class="ampliable" />
+      <p contenteditable="true">Título foto 11</p>
+      <button onclick="agregarAlCarrito('Foto 11', 120)">Agregar al carrito</button>
     </div>
-  </section>
-
-  <section class="galeria">
-    <h2>Galería de Producto 2</h2>
-    <div class="imagenes">
-      <script>
-        for(let i=1; i<=10; i++) {
-          document.write(`
-            <div class="imagen-item">
-              <img src="producto2-img${i}.jpg" alt="Producto 2 Imagen ${i}" class="ampliable" />
-              <p contenteditable="true">Producto 2 Imagen ${i}</p>
-              <button onclick="agregarAlCarrito('Producto 2 Imagen ${i}', 120)">Agregar al carrito</button>
-            </div>
-          `);
-        }
-      </script>
-    </div>
-  </section>
 
   <section class="galeria">
     <h2>Galería de Producto 3</h2>
@@ -324,6 +355,7 @@
 
 </body>
 </html>
+
 
 
 
