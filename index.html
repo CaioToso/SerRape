@@ -7,9 +7,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #d2b48c; /* Marrón claro tabaco */
+            background-color: #d2b48c; /* Marrón claro */
             margin: 0;
-            padding: 0;
         }
         header {
             text-align: center;
@@ -18,174 +17,154 @@
         header img {
             max-width: 150px;
         }
-        header p {
-            font-size: 1.2em;
-            margin-top: 10px;
-        }
         .productos, .galeria {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 15px;
             padding: 20px;
         }
         .producto {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255,255,255,0.9);
             padding: 10px;
             border-radius: 10px;
             text-align: center;
         }
         .producto img {
-            max-width: 100%;
+            width: 100%;
             border-radius: 5px;
+            cursor: pointer;
         }
         .precio {
             font-weight: bold;
-            margin-top: 5px;
         }
         button {
             background: #8b5e3c;
             color: white;
             border: none;
             padding: 5px 10px;
-            margin-top: 5px;
             cursor: pointer;
             border-radius: 5px;
         }
-        button:hover {
-            background: #6f462a;
-        }
-        .acordeon, .faq {
-            padding: 20px;
-        }
+        button:hover { background: #6f462a; }
         details {
             background: rgba(255,255,255,0.8);
-            margin-bottom: 10px;
+            margin: 10px;
             padding: 10px;
             border-radius: 8px;
-            cursor: pointer;
         }
         footer {
             background: #8b5e3c;
             color: white;
-            padding: 15px;
             text-align: center;
-            position: relative;
+            padding: 10px;
         }
         .whatsapp {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: #25D366;
-            border-radius: 50%;
-            padding: 10px;
         }
         .whatsapp img {
-            width: 40px;
-            height: 40px;
+            width: 50px;
         }
+        /* Modal para imágenes */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal img {
+            max-width: 80%;
+            max-height: 80%;
+        }
+        .flecha {
+            position: absolute;
+            top: 50%;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            user-select: none;
+        }
+        .flecha.izq { left: 20px; }
+        .flecha.der { right: 20px; }
     </style>
 </head>
 <body>
-    <header>
-        <img src="logo.png" alt="Logo de la Tienda">
-        <p>Tienda de Rapé, Kuripés, Tepís y Porta Rapé</p>
-    </header>
-
-    <!-- Cuatro imágenes principales -->
-    <section class="productos">
-        <div class="producto"><img src="rape.jpg" alt="Rapé"><p>Rapé</p></div>
-        <div class="producto"><img src="kuripe.jpg" alt="Kuripé"><p>Kuripé</p></div>
-        <div class="producto"><img src="tepi.jpg" alt="Tepí"><p>Tepí</p></div>
-        <div class="producto"><img src="portarape.jpg" alt="Porta Rapé"><p>Porta Rapé</p></div>
-    </section>
-
-    <!-- Galerías con precios y carrito -->
-    <h2 style="text-align:center">Variedades de Rapé</h2>
-    <section class="galeria" id="galeriaRape"></section>
-
-    <h2 style="text-align:center">Variedades de Kuripés</h2>
-    <section class="galeria" id="galeriaKuripe"></section>
-
-    <h2 style="text-align:center">Variedades de Tepís</h2>
-    <section class="galeria" id="galeriaTepi"></section>
-
-    <h2 style="text-align:center">Variedades de Porta Rapé</h2>
-    <section class="galeria" id="galeriaPorta"></section>
-
-    <!-- Acordeón de variedades de rapé -->
-    <section class="acordeon">
-        <h2>Descripción de las variedades de Rapé</h2>
-        <details><summary>Rapé 1</summary><p>Descripción del Rapé 1...</p></details>
-        <details><summary>Rapé 2</summary><p>Descripción del Rapé 2...</p></details>
-        <!-- Agregar más variedades hasta 10 -->
-    </section>
-
-    <!-- Preguntas frecuentes -->
-    <section class="faq">
-        <h2>Preguntas Frecuentes</h2>
-        <details><summary>¿Qué es la medicina del Rapé?</summary><p>Explicación...</p></details>
-        <details><summary>¿Cuál es su función?</summary><p>Explicación...</p></details>
-        <details><summary>¿Tiene contraindicaciones?</summary><p>Explicación...</p></details>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 Tienda de Rapé y Accesorios</p>
-    </footer>
-
-    <!-- Botón de WhatsApp -->
-    <a class="whatsapp" href="https://wa.me/549XXXXXXXXX" target="_blank">
-        <img src="whatsapp.png" alt="WhatsApp">
-    </a>
-
-    <script>
-        // Ejemplo de productos (cambiar imágenes y precios)
-        const productos = {
-            galeriaRape: [
-                { img: 'rape1.jpg', precio: 1500 },
-                { img: 'rape2.jpg', precio: 1600 },
-                // ... hasta 10
-            ],
-            galeriaKuripe: [
-                { img: 'kuripe1.jpg', precio: 2000 },
-                { img: 'kuripe2.jpg', precio: 2100 },
-            ],
-            galeriaTepi: [
-                { img: 'tepi1.jpg', precio: 2500 },
-                { img: 'tepi2.jpg', precio: 2600 },
-            ],
-            galeriaPorta: [
-                { img: 'porta1.jpg', precio: 1000 },
-                { img: 'porta2.jpg', precio: 1200 },
-            ]
-        };
-
-        const carrito = [];
-
-        function renderGaleria(id, items) {
-            const cont = document.getElementById(id);
-            cont.innerHTML = '';
-            items.forEach((p, i) => {
-                const div = document.createElement('div');
-                div.className = 'producto';
-                div.innerHTML = `
-                    <img src="${p.img}" alt="Producto">
-                    <p class="precio">$${p.precio}</p>
-                    <button onclick="agregarCarrito('${id}', ${i})">Agregar al carrito</button>
-                `;
-                cont.appendChild(div);
-            });
-        }
-
-        function agregarCarrito(categoria, index) {
-            carrito.push(productos[categoria][index]);
-            alert('Producto agregado al carrito');
-        }
-
-        // Renderizar galerías
-        for (const g in productos) {
-            renderGaleria(g, productos[g]);
-        }
-    </script>
+<header>
+    <img src="logo.png" alt="Logo">
+    <p>Tienda de Rapé, Kuripés, Tepís y Porta Rapé</p>
+</header>
+<section class="productos">
+    <div class="producto"><img src="rape.jpg"><p>Rapé</p></div>
+    <div class="producto"><img src="kuripe.jpg"><p>Kuripé</p></div>
+    <div class="producto"><img src="tepi.jpg"><p>Tepí</p></div>
+    <div class="producto"><img src="portarape.jpg"><p>Porta Rapé</p></div>
+</section>
+<div id="contenedorGalerias"></div>
+<section>
+    <h2>Variedades de Rapé</h2>
+    <div id="acordeon"></div>
+</section>
+<section>
+    <h2>Preguntas Frecuentes</h2>
+    <details><summary>¿Qué es la medicina del Rapé?</summary><p>Texto...</p></details>
+    <details><summary>¿Cuál es su función?</summary><p>Texto...</p></details>
+    <details><summary>¿Tiene contraindicaciones?</summary><p>Texto...</p></details>
+</section>
+<footer>&copy; 2025 Tienda</footer>
+<a class="whatsapp" href="https://wa.me/549XXXXXXXXX" target="_blank"><img src="whatsapp.png"></a>
+<div id="modal" class="modal">
+    <span class="flecha izq" onclick="cambiarImagen(-1)">&#10094;</span>
+    <img id="modalImg">
+    <span class="flecha der" onclick="cambiarImagen(1)">&#10095;</span>
+</div>
+<script>
+    const categorias = ['Rapé', 'Kuripé', 'Tepí', 'Porta Rapé'];
+    const imagenes = categorias.map(cat => Array.from({length:10}, (_,i) => ({img:`${cat.toLowerCase().replace(/ /g,'')}${i+1}.jpg`, precio:1000+i*100})));
+    const carrito = [];
+    const cont = document.getElementById('contenedorGalerias');
+    categorias.forEach((cat, idx) => {
+        const sec = document.createElement('section');
+        sec.innerHTML = `<h2>${cat}</h2><div class='galeria' id='gal${idx}'></div>`;
+        cont.appendChild(sec);
+        renderGaleria(`gal${idx}`, imagenes[idx]);
+    });
+    function renderGaleria(id, arr){
+        const g = document.getElementById(id);
+        arr.forEach((p, i) => {
+            const div = document.createElement('div');
+            div.className = 'producto';
+            div.innerHTML = `<img src='${p.img}' onclick='abrirModal(${id.split('gal')[1]},${i})'><p class='precio'>$${p.precio}</p><button onclick='addCarrito(${id.split('gal')[1]},${i})'>Agregar</button>`;
+            g.appendChild(div);
+        });
+    }
+    function addCarrito(c,i){
+        carrito.push(imagenes[c][i]);
+        alert('Agregado al carrito');
+    }
+    // Modal
+    let imgIndex=0, catIndex=0;
+    function abrirModal(cat,i){
+        catIndex=cat; imgIndex=i;
+        document.getElementById('modal').style.display='flex';
+        mostrarImagen();
+    }
+    function mostrarImagen(){
+        document.getElementById('modalImg').src=imagenes[catIndex][imgIndex].img;
+    }
+    function cambiarImagen(d){
+        imgIndex=(imgIndex+d+10)%10; mostrarImagen();
+    }
+    document.getElementById('modal').onclick=e=>{if(e.target.id==='modal') e.target.style.display='none'};
+    // Acordeón rapé
+    const acordeon = document.getElementById('acordeon');
+    for(let i=1;i<=10;i++){
+        acordeon.innerHTML += `<details><summary>Rapé ${i}</summary><p>Descripción del Rapé ${i}...</p></details>`;
+    }
+</script>
 </body>
 </html>
-
