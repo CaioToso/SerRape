@@ -161,10 +161,15 @@
       width: 40px;
       height: 40px;
     }
-     .respuesta {
-      max-height: none !important;
-      height: auto !important;
-      overflow: visible !important;
+     .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding: 0 10px;
+    }
+    .faq-answer.open {
+      max-height: 1000px; /* suficientemente grande para mostrar el texto */
+      padding: 10px;
     }
 
     /* Modal */
@@ -533,12 +538,14 @@ Pudiendo ordenar todo en la consciencia, sin imágenes emocionales. Incayuyo - D
   <section class="acordeon">
     <h2>Preguntas sobre la medicina del rapé</h2>
     <div class="acordeon-item">
+      <div class="faq-answer">
       <button>¿Qué es el rapé?</button>
       <div class="contenido">
         <p>El rapé, un polvo hecho a partir de plantas milenarias autóctonas de nuestras Sierras, cuyo componente esencial es el Tabaco. Es una medicina física y espiritual que ayuda a limpiar la Glándula Pineal, una parte del cuerpo que conecta al ser humano directamente con la energía. Pero más allá de qué plantas lo acompañen, lo importante es el “es el espíritu de las plantas”, que hacen a esta medicina. A nivel energético, ayuda a entrar a un estado meditativo directo. A nivel físico, alivia enfermedades en las vías respiratorias o dolores de cabezas fuertes, como las migrañas. Su uso consciente permite una relajación total, aquieta el pensamiento y nos permite un profundo estado de concentración, firmeza y claridad para estar presentes en el AQUÍ Y AHORA.</p>
       </div>
     </div>
     <div class="acordeon-item">
+      <div class="faq-answer">
       <button>¿Para qué sirve el rapé?</button>
       <div class="contenido">
         <p>Desde tiempos antiguos, diversos pueblos indígenas han utilizado el rapé para:
@@ -550,6 +557,7 @@ Recibir rapé es un acto de presencia. Se siente como una suave brisa que limpia
       </div>
     </div>
     <div class="acordeon-item">
+      <div class="faq-answer">
       <button>¿Tiene contraindicaciones?</button>
       <div class="contenido">
         <p>Siempre y cuando su uso sea consciente. El rapé es sagrado y debe recibirse con respeto, en un entorno seguro y con la guía de personas con experiencia. "El rapé no es recreativo. Su verdadero sentido se pierde cuando se lo confunde con una forma de entretenimiento. Es una medicina sagrada, una herramienta de conexión y claridad, destinada a acompañar procesos internos y espirituales". </p>
@@ -660,6 +668,7 @@ Recibir rapé es un acto de presencia. Se siente como una suave brisa que limpia
 
 </body>
 </html>
+
 
 
 
