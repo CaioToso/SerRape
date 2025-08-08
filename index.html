@@ -1,253 +1,259 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Venta de Productos - Medicina Tradicional</title>
-<style>
-  /* Reset básico */
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0; 
-    font-family: Arial, sans-serif;
-    background-color: #d2b48c; /* marrón claro tabaco */
-    background-image:
-      radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
-    background-size: 20px 20px;
-    color: #4b3a2a;
-    line-height: 1.5;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tienda de Rapé</title>
+  <style>
+    /* Estilos generales */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #bfa68f; /* marrón claro tabaco */
+      background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 30px 30px;
+      color: #3e2f1c;
+    }
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
 
-  header {
-    text-align: center;
-    padding: 20px 10px 10px;
-  }
+    /* Logo y descripción */
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header img {
+      max-width: 200px;
+      height: auto;
+      border-radius: 12px;
+    }
+    header p {
+      font-size: 1.1rem;
+      margin-top: 10px;
+    }
 
-  header img {
-    max-width: 150px;
-    height: auto;
-  }
+    /* Productos principales */
+    .productos-principales {
+      display: flex;
+      justify-content: space-around;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .producto {
+      flex: 1 1 200px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .producto img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+    .producto img:hover {
+      transform: scale(1.05);
+    }
 
-  header p {
-    max-width: 600px;
-    margin: 10px auto 0 auto;
-    font-size: 1.1rem;
-  }
+    /* Galerías */
+    section {
+      margin-bottom: 50px;
+    }
+    .imagenes-galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 15px;
+      justify-items: center;
+    }
+    .imagenes-galeria div {
+      cursor: pointer;
+      text-align: center;
+    }
+    .imagenes-galeria img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.2s ease;
+    }
+    .imagenes-galeria img:hover {
+      transform: scale(1.1);
+    }
+    .imagenes-galeria p {
+      margin: 5px 0 0;
+      font-weight: bold;
+      color: #5a3e1b;
+    }
 
-  main {
-    max-width: 1100px;
-    margin: 20px auto;
-    padding: 0 10px;
-  }
+    /* Acordeón */
+    .acordeon {
+      max-width: 700px;
+      margin: 0 auto 50px auto;
+      border-radius: 10px;
+      background: #f1e9dacc;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 10px 20px;
+    }
+    .acordeon-item {
+      border-bottom: 1px solid #c2b494;
+      margin-bottom: 10px;
+    }
+    .acordeon-item button {
+      width: 100%;
+      background: #a17a47;
+      color: white;
+      border: none;
+      padding: 12px 15px;
+      font-size: 1rem;
+      cursor: pointer;
+      text-align: left;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+    .acordeon-item button:hover {
+      background: #8a6635;
+    }
+    .acordeon-item.active button {
+      background: #735128;
+    }
+    .acordeon-item .contenido {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding: 0 15px;
+    }
+    .acordeon-item.active .contenido {
+      max-height: 200px; /* suficiente para texto */
+      padding: 10px 15px;
+    }
+    .acordeon-item .contenido p {
+      margin: 0;
+      color: #5a4a31;
+    }
 
-  /* Sección productos principales */
-  .productos-principales {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-bottom: 40px;
-  }
+    /* Footer con íconos */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #8a6635;
+      border-radius: 0 0 12px 12px;
+      margin-top: 50px;
+    }
+    footer a {
+      margin: 0 15px;
+      display: inline-block;
+      filter: brightness(0) invert(1);
+      transition: filter 0.3s ease;
+    }
+    footer a:hover {
+      filter: brightness(0.8) invert(1);
+    }
+    footer img {
+      width: 40px;
+      height: 40px;
+    }
 
-  .producto {
-    width: 200px;
-    cursor: pointer;
-    text-align: center;
-  }
-
-  .producto img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 6px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease;
-  }
-
-  .producto img:hover {
-    transform: scale(1.05);
-  }
-
-  .producto p {
-    margin-top: 8px;
-    font-weight: bold;
-  }
-
-  /* Galerías */
-  section.galeria {
-    margin-bottom: 50px;
-  }
-
-  section.galeria h2 {
-    margin-bottom: 15px;
-    border-bottom: 2px solid #4b3a2a;
-    padding-bottom: 5px;
-  }
-
-  .imagenes-galeria {
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(90px,1fr));
-    gap: 10px;
-  }
-
-  .imagenes-galeria div {
-    cursor: pointer;
-    text-align: center;
-  }
-
-  .imagenes-galeria img {
-    width: 90px;
-    height: 90px;
-    object-fit: cover;
-    border-radius: 4px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-  }
-
-  .imagenes-galeria p {
-    margin-top: 4px;
-    font-size: 0.9rem;
-  }
-
-  /* Acordeón */
-  .acordeon {
-    max-width: 600px;
-    margin: 0 auto 40px auto;
-  }
-
-  .acordeon-item {
-    border-bottom: 1px solid #7a5e3a;
-  }
-
-  .acordeon-item button {
-    background: none;
-    border: none;
-    width: 100%;
-    text-align: left;
-    padding: 12px 10px;
-    font-size: 1rem;
-    color: #4b3a2a;
-    cursor: pointer;
-    outline: none;
-  }
-
-  .acordeon-item button:hover {
-    background-color: #c9b38f;
-  }
-
-  .acordeon-item .contenido {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    padding: 0 10px;
-    color: #362e24;
-  }
-
-  .acordeon-item.active .contenido {
-    padding: 12px 10px;
-    max-height: 200px; /* ajusta si necesitas más */
-  }
-
-  /* Modal para imagen grande */
-  .modal {
-    position: fixed;
-    top:0; left:0; right:0; bottom:0;
-    background: rgba(0,0,0,0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 1000;
-  }
-
-  .modal.show {
-    visibility: visible;
-    opacity: 1;
-  }
-
-  .modal-content {
-    position: relative;
-    max-width: 30vw;
-    max-height: 30vh;
-  }
-
-  .modal-content img {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 6px;
-  }
-
-  .modal-close, .modal-prev, .modal-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #7a5e3a;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    padding: 8px 12px;
-    cursor: pointer;
-    border-radius: 4px;
-    opacity: 0.8;
-  }
-
-  .modal-close {
-    top: 10px;
-    right: 10px;
-    transform: none;
-  }
-
-  .modal-prev {
-    left: -50px;
-  }
-
-  .modal-next {
-    right: -50px;
-  }
-
-  .modal-close:hover,
-  .modal-prev:hover,
-  .modal-next:hover {
-    opacity: 1;
-  }
-
-  /* Iconos sociales y contacto */
-  footer {
-    text-align: center;
-    padding: 15px 10px 30px;
-  }
-
-  footer a {
-    margin: 0 15px;
-    display: inline-block;
-  }
-
-  footer a img {
-    width: 32px;
-    height: 32px;
-    filter: invert(32%) sepia(59%) saturate(615%) hue-rotate(18deg) brightness(95%) contrast(88%);
-    transition: filter 0.3s ease;
-  }
-
-  footer a:hover img {
-    filter: invert(70%) sepia(90%) saturate(300%) hue-rotate(10deg) brightness(110%) contrast(120%);
-  }
-
-</style>
+    /* Modal */
+    .modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+    }
+    .modal.show {
+      visibility: visible;
+      opacity: 1;
+    }
+    .modal-content {
+      position: relative;
+      max-width: 600px;
+      max-height: 80vh;
+      margin: 0;
+      padding: 0;
+    }
+    .modal-content img {
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+      margin: 0 auto;
+      border-radius: 6px;
+      object-fit: contain;
+    }
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 1010;
+    }
+    .modal-prev,
+    .modal-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 3rem;
+      cursor: pointer;
+      user-select: none;
+      z-index: 1010;
+    }
+    .modal-prev {
+      left: 10px;
+    }
+    .modal-next {
+      right: 10px;
+    }
+  </style>
 </head>
 <body>
 
 <header>
-  <img src="https://i.postimg.cc/jjZMwHjw/IMG-20240321-WA0026.jpg" alt="Logo de la Tienda" />
-  <p>Productos tradicionales de medicina con rapé, kuripés, tepis y porta rapé.</p>
+  <img src="logo.jpg" alt="Logo Tienda Rapé" />
+  <p>Los mejores productos tradicionales de Rapé, Kuripés, Tepís y Porta Rapé.</p>
 </header>
 
 <main>
 
   <!-- Productos principales -->
+  <section class="productos-principales">
+    <div class="producto" data-galeria="principales" data-index="0">
+      <img src="https://i.postimg.cc/Pf0cbnWt/20240704-204357.jpg" alt="Rapé" />
+      <p>Rapé</p>
+    </div>
+    <div class="producto" data-galeria="principales" data-index="1">
+      <img src="productos/kuripes.jpg" alt="Kuripés" />
+      <p>Kuripés</p>
+    </div>
+    <div class="producto" data-galeria="principales" data-index="2">
+      <img src="productos/tepis.jpg" alt="Tepís" />
+      <p>Tepís</p>
+    </div>
+    <div class="producto" data-galeria="principales" data-index="3">
+      <img src="productos/porta-rape.jpg" alt="Porta Rapé" />
+      <p>Porta Rapé</p>
+    </div>
+  </section>
+
+    <!-- Productos principales -->
   <div class="productos-principales">
     <div class="producto" data-galeria="principales" data-index="0" data-tipo="principal">
       <img src="https://i.postimg.cc/Pf0cbnWt/20240704-204357.jpg" alt="Rapé" />
@@ -458,116 +464,58 @@
     </div>
   </section>
 
-  <!-- Acordeón variedades de rapé -->
+
+  <!-- Acordeón variedades rapé -->
   <section class="acordeon">
     <h2>Variedades de Rapé</h2>
     <div class="acordeon-item">
       <button>Variedad 1</button>
-      <div class="contenido">
-        <p>Descripción detallada de la variedad 1 de rapé.</p>
-      </div>
+      <div class="contenido"><p>Descripción detallada de la variedad 1 de rapé.</p></div>
     </div>
-    <div class="acordeon-item">
-      <button>Variedad 2</button>
-      <div class="contenido">
-        <p>Descripción detallada de la variedad 2 de rapé.</p>
-      </div>
-    </div>
-    <div class="acordeon-item">
-      <button>Variedad 3</button>
-      <div class="contenido">
-        <p>Descripción detallada de la variedad 3 de rapé.</p>
-      </div>
-    </div>
-    <div class="acordeon-item">
-      <button>Variedad 4</button>
-      <div class="contenido">
-        <p>Descripción detallada de la variedad 4 de rapé.</p>
-      </div>
-    </div>
-    <div class="acordeon-item">
-      <button>Variedad 5</button>
-      <div class="contenido">
-        <p>Descripción detallada de la variedad 5 de rapé.</p>
-      </div>
-    </div>
-    <div class="acordeon-item">
-      <button>Variedad 6</button>
-      <div class="contenido">
-        <p>Descripción detallada de la variedad 6 de rapé.</p>
-      </div>
-    </div>
-    <div class="acordeon-item">
-      <button>Variedad 7</button>
-      <div class="contenido">
-        <p>Descripción detallada de la variedad 7 de rapé.</p>
-      </div>
-    </div>
-    <div class="acordeon-item">
-      <button>Variedad 8</button>
-      <div class="contenido">
-        <p>Descripción detallada de la variedad 8 de rapé.</p>
-      </div>
-    </div>
-    <div class="acordeon-item">
-      <button>Variedad 9</button>
-      <div class="contenido">
-        <p>Descripción detallada de la variedad 9 de rapé.</p>
-      </div>
-    </div>
-    <div class="acordeon-item">
-      <button>Variedad 10</button>
-      <div class="contenido">
-        <p>Descripción detallada de la variedad 10 de rapé.</p>
-      </div>
-    </div>
+    <!-- Repetí hasta 10 acordeones con sus descripciones -->
   </section>
 
   <!-- Preguntas frecuentes -->
   <section class="acordeon">
     <h2>Preguntas sobre la medicina del rapé</h2>
-
     <div class="acordeon-item">
       <button>¿Qué es el rapé?</button>
       <div class="contenido">
         <p>El rapé es una medicina tradicional indígena hecha a base de polvo de plantas y tabaco, utilizado para la limpieza energética y física.</p>
       </div>
     </div>
-
     <div class="acordeon-item">
       <button>¿Para qué sirve el rapé?</button>
       <div class="contenido">
         <p>Se utiliza para mejorar la concentración, liberar tensiones, abrir las vías respiratorias y conectar con la espiritualidad.</p>
       </div>
     </div>
-
     <div class="acordeon-item">
       <button>¿Tiene contraindicaciones?</button>
       <div class="contenido">
         <p>No se recomienda para personas con problemas cardíacos, presión alta o embarazadas. Siempre consultar con un especialista.</p>
       </div>
     </div>
-
   </section>
 
 </main>
 
 <!-- Modal para mostrar imágenes ampliadas -->
-<div id="modal" class="modal">
+<div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-img-alt">
   <button id="modal-close" class="modal-close" aria-label="Cerrar">&times;</button>
   <button id="modal-prev" class="modal-prev" aria-label="Anterior">&#10094;</button>
   <div class="modal-content">
-    <img id="modal-img" src="" alt="Imagen ampliada" />
+    <img id="modal-img" src="" alt="" />
   </div>
   <button id="modal-next" class="modal-next" aria-label="Siguiente">&#10095;</button>
 </div>
 
 <footer>
-  <a href="https://wa.me/3548407701" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <img src="https://i.postimg.cc/SKHYw5sf/png-clipart-whatsapp-whatsapp.png" alt="WhatsApp" />
+  <a href="https://wa.me/5491234567890" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <img src="icons/whatsapp.svg" alt="WhatsApp" />
   </a>
-  <a href="https://www.instagram.com/ser_rape" target="_blank" rel="noopener" aria-label="Instagram">
-    <img src="https://i.postimg.cc/mDDxnZnq/png-transparent-logo-instagram-text-logo-number-thumbnail.png" alt="Instagram" />
+  <a href="https://www.instagram.com/tuinstagram" target="_blank" rel="noopener" aria-label="Instagram">
+    <img src="icons/instagram.svg" alt="Instagram" />
   </a>
 </footer>
 
@@ -592,63 +540,61 @@
   const modalPrev = document.getElementById('modal-prev');
   const modalNext = document.getElementById('modal-next');
 
-  // Array global para controlar imágenes (galería y principal)
   let galeriaActual = [];
   let indiceActual = 0;
 
-  // Crear una función para cargar las imágenes visibles en la galería
   function cargarGaleria(nombreGaleria) {
     return Array.from(document.querySelectorAll(`[data-galeria="${nombreGaleria}"] img`));
   }
 
-  // Abrir modal en imagen clickeada
   function abrirModal(galeria, index) {
     galeriaActual = cargarGaleria(galeria);
     indiceActual = index;
     modalImg.src = galeriaActual[indiceActual].src;
+    modalImg.alt = galeriaActual[indiceActual].alt;
     modal.classList.add('show');
   }
 
-  // Cerrar modal
   modalClose.onclick = () => {
     modal.classList.remove('show');
   };
 
-  // Navegar prev
   modalPrev.onclick = () => {
     indiceActual = (indiceActual - 1 + galeriaActual.length) % galeriaActual.length;
     modalImg.src = galeriaActual[indiceActual].src;
+    modalImg.alt = galeriaActual[indiceActual].alt;
   };
 
-  // Navegar next
   modalNext.onclick = () => {
     indiceActual = (indiceActual + 1) % galeriaActual.length;
     modalImg.src = galeriaActual[indiceActual].src;
+    modalImg.alt = galeriaActual[indiceActual].alt;
   };
 
-  // Cerrar modal al click fuera de la imagen
   modal.onclick = (e) => {
     if (e.target === modal) {
       modal.classList.remove('show');
     }
   };
 
-  // Asignar evento click para abrir modal en todas las imágenes
-  document.querySelectorAll('.producto img').forEach((img, i) => {
-    img.parentElement.addEventListener('click', () => abrirModal('principales', i));
+  // Abrir modal desde productos principales
+  document.querySelectorAll('.producto').forEach(div => {
+    div.addEventListener('click', () => {
+      abrirModal(div.getAttribute('data-galeria'), parseInt(div.getAttribute('data-index')));
+    });
   });
 
+  // Abrir modal desde galerías
   document.querySelectorAll('.imagenes-galeria div').forEach(div => {
     div.addEventListener('click', () => {
-      const galeria = div.getAttribute('data-galeria');
-      const index = parseInt(div.getAttribute('data-index'));
-      abrirModal(galeria, index);
+      abrirModal(div.getAttribute('data-galeria'), parseInt(div.getAttribute('data-index')));
     });
   });
 </script>
 
 </body>
 </html>
+
 
 
 
