@@ -1,170 +1,236 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda de Rapé y Accesorios</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #d2b48c; /* Marrón claro */
-            margin: 0;
-        }
-        header {
-            text-align: center;
-            padding: 20px;
-        }
-        header img {
-            max-width: 150px;
-        }
-        .productos, .galeria {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            padding: 20px;
-        }
-        .producto {
-            background: rgba(255,255,255,0.9);
-            padding: 10px;
-            border-radius: 10px;
-            text-align: center;
-        }
-        .producto img {
-            width: 100%;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .precio {
-            font-weight: bold;
-        }
-        button {
-            background: #8b5e3c;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        button:hover { background: #6f462a; }
-        details {
-            background: rgba(255,255,255,0.8);
-            margin: 10px;
-            padding: 10px;
-            border-radius: 8px;
-        }
-        footer {
-            background: #8b5e3c;
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
-        .whatsapp {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-        }
-        .whatsapp img {
-            width: 50px;
-        }
-        /* Modal para imágenes */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0; top: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal img {
-            max-width: 80%;
-            max-height: 80%;
-        }
-        .flecha {
-            position: absolute;
-            top: 50%;
-            font-size: 40px;
-            color: white;
-            cursor: pointer;
-            user-select: none;
-        }
-        .flecha.izq { left: 20px; }
-        .flecha.der { right: 20px; }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tienda de Rapé y Accesorios</title>
+<style>
+  :root {
+    --marron: #8b5e3c;
+    --marron-osc: #6f462a;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #d2b48c;
+    background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 18px 18px;
+    margin: 0;
+    color: #2b2b2b;
+  }
+  header {
+    text-align: center;
+    padding: 20px;
+  }
+  header img {
+    max-width: 150px;
+  }
+  header p {
+    margin-top: 6px;
+    font-size: 1.2em;
+  }
+  .productos, .galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    padding: 20px;
+  }
+  .producto {
+    background: rgba(255,255,255,0.9);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+  .producto img {
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    max-height: 140px;
+    object-fit: cover;
+  }
+  .precio {
+    font-weight: bold;
+    margin-top: 6px;
+  }
+  h2 {
+    padding-left: 20px;
+    margin-top: 40px;
+  }
+  details {
+    background: rgba(255,255,255,0.85);
+    margin: 10px 20px;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  footer {
+    background: var(--marron);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 40px;
+  }
+  .social-icons {
+    text-align: center;
+    margin: 10px 0 30px;
+  }
+  .social-icons a {
+    margin: 0 10px;
+    display: inline-block;
+  }
+  .social-icons img {
+    width: 40px;
+    vertical-align: middle;
+    filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.2));
+    cursor: pointer;
+  }
+
+  /* Modal imagen */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+  }
+  .modal img {
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 8px;
+  }
+  .flecha {
+    position: absolute;
+    top: 50%;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    background: rgba(0,0,0,0.3);
+    transform: translateY(-50%);
+  }
+  .flecha.izq { left: 20px; }
+  .flecha.der { right: 20px; }
+</style>
 </head>
 <body>
+
 <header>
-    <img src="logo.png" alt="Logo">
-    <p>Tienda de Rapé, Kuripés, Tepís y Porta Rapé</p>
+  <img src="logo.png" alt="Logo" />
+  <p>Tienda de Rapé, Kuripés, Tepís y Porta Rapé</p>
 </header>
-<section class="productos">
-    <div class="producto"><img src="rape.jpg"><p>Rapé</p></div>
-    <div class="producto"><img src="kuripe.jpg"><p>Kuripé</p></div>
-    <div class="producto"><img src="tepi.jpg"><p>Tepí</p></div>
-    <div class="producto"><img src="portarape.jpg"><p>Porta Rapé</p></div>
+
+<section class="productos" aria-label="Productos principales">
+  <div class="producto"><img src="rape.jpg" alt="Rapé" /><p>Rapé</p></div>
+  <div class="producto"><img src="kuripe.jpg" alt="Kuripé" /><p>Kuripé</p></div>
+  <div class="producto"><img src="tepi.jpg" alt="Tepí" /><p>Tepí</p></div>
+  <div class="producto"><img src="portarape.jpg" alt="Porta Rapé" /><p>Porta Rapé</p></div>
 </section>
-<div id="contenedorGalerias"></div>
+
+<div id="contenedorGalerias" aria-label="Galerías de productos"></div>
+
 <section>
-    <h2>Variedades de Rapé</h2>
-    <div id="acordeon"></div>
+  <h2>Variedades de Rapé</h2>
+  <div id="acordeon"></div>
 </section>
+
 <section>
-    <h2>Preguntas Frecuentes</h2>
-    <details><summary>¿Qué es la medicina del Rapé?</summary><p>Texto...</p></details>
-    <details><summary>¿Cuál es su función?</summary><p>Texto...</p></details>
-    <details><summary>¿Tiene contraindicaciones?</summary><p>Texto...</p></details>
+  <h2>Preguntas Frecuentes</h2>
+  <details><summary>¿Qué es la medicina del Rapé?</summary><p>La medicina del Rapé es...</p></details>
+  <details><summary>¿Cuál es su función?</summary><p>Su función principal es...</p></details>
+  <details><summary>¿Tiene contraindicaciones?</summary><p>Puede tener contraindicaciones como...</p></details>
 </section>
-<footer>&copy; 2025 Tienda</footer>
-<a class="whatsapp" href="https://wa.me/549XXXXXXXXX" target="_blank"><img src="whatsapp.png"></a>
-<div id="modal" class="modal">
-    <span class="flecha izq" onclick="cambiarImagen(-1)">&#10094;</span>
-    <img id="modalImg">
-    <span class="flecha der" onclick="cambiarImagen(1)">&#10095;</span>
+
+<div class="social-icons" aria-label="Redes sociales">
+  <a href="https://wa.me/549XXXXXXXXX" target="_blank" aria-label="WhatsApp"><img src="whatsapp.png" alt="WhatsApp" /></a>
+  <a href="https://instagram.com/tuusuario" target="_blank" aria-label="Instagram"><img src="instagram.png" alt="Instagram" /></a>
 </div>
+
+<footer>
+  &copy; 2025 Tienda de Rapé y Accesorios
+</footer>
+
+<!-- Modal para imagen -->
+<div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+  <span class="flecha izq" tabindex="0" role="button" aria-label="Imagen anterior" onclick="cambiarImagen(-1)">&#10094;</span>
+  <img id="modalImg" alt="Imagen ampliada" />
+  <span class="flecha der" tabindex="0" role="button" aria-label="Imagen siguiente" onclick="cambiarImagen(1)">&#10095;</span>
+</div>
+
 <script>
-    const categorias = ['Rapé', 'Kuripé', 'Tepí', 'Porta Rapé'];
-    const imagenes = categorias.map(cat => Array.from({length:10}, (_,i) => ({img:`${cat.toLowerCase().replace(/ /g,'')}${i+1}.jpg`, precio:1000+i*100})));
-    const carrito = [];
-    const cont = document.getElementById('contenedorGalerias');
-    categorias.forEach((cat, idx) => {
-        const sec = document.createElement('section');
-        sec.innerHTML = `<h2>${cat}</h2><div class='galeria' id='gal${idx}'></div>`;
-        cont.appendChild(sec);
-        renderGaleria(`gal${idx}`, imagenes[idx]);
+  const categorias = ['Rapé', 'Kuripé', 'Tepí', 'Porta Rapé'];
+  // Suponemos que las imágenes se llaman rape1.jpg ... kuripe1.jpg ...
+  const imagenes = categorias.map(cat => Array.from({length:10}, (_,i) => ({
+    img: `${cat.toLowerCase().replace(/ /g,'')}${i+1}.jpg`,
+    precio: 1000 + i*150,
+    nombre: `${cat} ${i+1}`
+  })));
+
+  const cont = document.getElementById('contenedorGalerias');
+
+  categorias.forEach((cat, idx) => {
+    const sec = document.createElement('section');
+    sec.innerHTML = `<h2>${cat}</h2><div class='galeria' id='gal${idx}'></div>`;
+    cont.appendChild(sec);
+    renderGaleria(`gal${idx}`, imagenes[idx], idx);
+  });
+
+  function renderGaleria(id, arr, catIdx){
+    const g = document.getElementById(id);
+    arr.forEach((p, i) => {
+      const div = document.createElement('div');
+      div.className = 'producto';
+      div.innerHTML = `<img src='${p.img}' alt='${p.nombre}' onclick='abrirModal(${catIdx},${i})' tabindex="0" onkeypress="if(event.key==='Enter'){abrirModal(${catIdx},${i})}"> 
+                       <div class='precio'>$${p.precio}</div>`;
+      g.appendChild(div);
     });
-    function renderGaleria(id, arr){
-        const g = document.getElementById(id);
-        arr.forEach((p, i) => {
-            const div = document.createElement('div');
-            div.className = 'producto';
-            div.innerHTML = `<img src='${p.img}' onclick='abrirModal(${id.split('gal')[1]},${i})'><p class='precio'>$${p.precio}</p><button onclick='addCarrito(${id.split('gal')[1]},${i})'>Agregar</button>`;
-            g.appendChild(div);
-        });
+  }
+
+  // Modal imagen con flechas
+  let imgIndex=0, catIndex=0;
+  const modal = document.getElementById('modal');
+  const modalImg = document.getElementById('modalImg');
+
+  function abrirModal(cat, i){
+    catIndex = cat; imgIndex = i;
+    modal.style.display = 'flex';
+    mostrarImagen();
+  }
+  function mostrarImagen(){
+    modalImg.src = imagenes[catIndex][imgIndex].img;
+    modalImg.alt = imagenes[catIndex][imgIndex].nombre;
+  }
+  function cambiarImagen(d){
+    imgIndex = (imgIndex + d + 10) % 10;
+    mostrarImagen();
+  }
+  modal.onclick = e => {
+    if(e.target === modal) modal.style.display = 'none';
+  }
+  // Cerramos modal con Escape
+  window.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && modal.style.display === 'flex'){
+      modal.style.display = 'none';
     }
-    function addCarrito(c,i){
-        carrito.push(imagenes[c][i]);
-        alert('Agregado al carrito');
-    }
-    // Modal
-    let imgIndex=0, catIndex=0;
-    function abrirModal(cat,i){
-        catIndex=cat; imgIndex=i;
-        document.getElementById('modal').style.display='flex';
-        mostrarImagen();
-    }
-    function mostrarImagen(){
-        document.getElementById('modalImg').src=imagenes[catIndex][imgIndex].img;
-    }
-    function cambiarImagen(d){
-        imgIndex=(imgIndex+d+10)%10; mostrarImagen();
-    }
-    document.getElementById('modal').onclick=e=>{if(e.target.id==='modal') e.target.style.display='none'};
-    // Acordeón rapé
-    const acordeon = document.getElementById('acordeon');
-    for(let i=1;i<=10;i++){
-        acordeon.innerHTML += `<details><summary>Rapé ${i}</summary><p>Descripción del Rapé ${i}...</p></details>`;
-    }
+  });
+
+  // Acordeón variedades Rapé
+  const acordeon = document.getElementById('acordeon');
+  for(let i=1; i<=10; i++){
+    const det = document.createElement('details');
+    const sum = document.createElement('summary');
+    sum.textContent = `Rapé ${i}`;
+    const p = document.createElement('p');
+    p.textContent = `Descripción detallada de la variedad de Rapé número ${i}.`;
+    det.appendChild(sum);
+    det.appendChild(p);
+    acordeon.appendChild(det);
+  }
 </script>
+
 </body>
 </html>
+
