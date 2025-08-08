@@ -7,11 +7,11 @@
 <style>
   :root {
     --marron: #8b5e3c;
-    --marron-osc: #6f462a;
+    --marron-claro: #d2b48c;
   }
   body {
     font-family: Arial, sans-serif;
-    background-color: #d2b48c;
+    background-color: var(--marron-claro);
     background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
     background-size: 18px 18px;
     margin: 0;
@@ -23,16 +23,19 @@
   }
   header img {
     max-width: 150px;
+    cursor: pointer;
   }
   header p {
     margin-top: 6px;
     font-size: 1.2em;
   }
-  .productos, .galeria {
+  .productos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
     gap: 15px;
     padding: 20px;
+    max-width: 960px;
+    margin: auto;
   }
   .producto {
     background: rgba(255,255,255,0.9);
@@ -52,29 +55,37 @@
     font-weight: bold;
     margin-top: 6px;
   }
+  section {
+    max-width: 960px;
+    margin: 30px auto;
+  }
   h2 {
-    padding-left: 20px;
-    margin-top: 40px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--marron);
+    padding-bottom: 5px;
+    color: var(--marron);
+  }
+  .galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
+    gap: 12px;
   }
   details {
     background: rgba(255,255,255,0.85);
-    margin: 10px 20px;
+    margin: 10px 0;
     padding: 10px;
     border-radius: 8px;
   }
-  footer {
-    background: var(--marron);
-    color: white;
-    text-align: center;
-    padding: 10px;
-    margin-top: 40px;
+  summary {
+    cursor: pointer;
+    font-weight: bold;
   }
   .social-icons {
     text-align: center;
-    margin: 10px 0 30px;
+    margin: 30px 0 60px;
   }
   .social-icons a {
-    margin: 0 10px;
+    margin: 0 15px;
     display: inline-block;
   }
   .social-icons img {
@@ -83,154 +94,394 @@
     filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.2));
     cursor: pointer;
   }
-
+  footer {
+    background: var(--marron);
+    color: white;
+    text-align: center;
+    padding: 12px 0;
+    font-size: 0.9em;
+  }
   /* Modal imagen */
   .modal {
     display: none;
     position: fixed;
     z-index: 1000;
     left: 0; top: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.8);
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.85);
     justify-content: center;
     align-items: center;
+    overflow: hidden;
   }
-  .modal img {
-    max-width: 80%;
-    max-height: 80%;
+  .modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+  }
+  .modal-content img {
+    width: 100%;
+    max-height: 90vh;
     border-radius: 8px;
+    object-fit: contain;
   }
   .flecha {
     position: absolute;
     top: 50%;
-    font-size: 40px;
+    font-size: 50px;
     color: white;
     cursor: pointer;
     user-select: none;
-    padding: 5px 10px;
+    padding: 5px 12px;
     border-radius: 3px;
     background: rgba(0,0,0,0.3);
     transform: translateY(-50%);
   }
-  .flecha.izq { left: 20px; }
-  .flecha.der { right: 20px; }
+  .flecha.izq { left: -60px; }
+  .flecha.der { right: -60px; }
+  @media(max-width: 600px) {
+    .flecha.izq { left: 10px; }
+    .flecha.der { right: 10px; }
+  }
 </style>
 </head>
 <body>
 
 <header>
-  <img src="logo.png" alt="Logo" />
+  <img id="logo" src="logo.png" alt="Logo de la Tienda" tabindex="0" />
   <p>Tienda de Rapé, Kuripés, Tepís y Porta Rapé</p>
 </header>
 
 <section class="productos" aria-label="Productos principales">
-  <div class="producto"><img src="rape.jpg" alt="Rapé" /><p>Rapé</p></div>
-  <div class="producto"><img src="kuripe.jpg" alt="Kuripé" /><p>Kuripé</p></div>
-  <div class="producto"><img src="tepi.jpg" alt="Tepí" /><p>Tepí</p></div>
-  <div class="producto"><img src="portarape.jpg" alt="Porta Rapé" /><p>Porta Rapé</p></div>
+  <div class="producto">
+    <img src="rape.jpg" alt="Rapé" tabindex="0" onclick="abrirModalSimple('rape.jpg', 'Rapé')" />
+    <p>Rapé</p>
+  </div>
+  <div class="producto">
+    <img src="kuripe.jpg" alt="Kuripé" tabindex="0" onclick="abrirModalSimple('kuripe.jpg', 'Kuripé')" />
+    <p>Kuripé</p>
+  </div>
+  <div class="producto">
+    <img src="tepi.jpg" alt="Tepí" tabindex="0" onclick="abrirModalSimple('tepi.jpg', 'Tepí')" />
+    <p>Tepí</p>
+  </div>
+  <div class="producto">
+    <img src="portarape.jpg" alt="Porta Rapé" tabindex="0" onclick="abrirModalSimple('portarape.jpg', 'Porta Rapé')" />
+    <p>Porta Rapé</p>
+  </div>
 </section>
-
-<div id="contenedorGalerias" aria-label="Galerías de productos"></div>
 
 <section>
-  <h2>Variedades de Rapé</h2>
-  <div id="acordeon"></div>
+  <h2>Rapé</h2>
+  <div class="galeria">
+    <div class="producto">
+      <img src="rape1.jpg" alt="Rapé 1" tabindex="0" onclick="abrirModalGaleria('rape', 0)" />
+      <div class="precio">$1000</div>
+    </div>
+    <div class="producto">
+      <img src="rape2.jpg" alt="Rapé 2" tabindex="0" onclick="abrirModalGaleria('rape', 1)" />
+      <div class="precio">$1150</div>
+    </div>
+    <div class="producto">
+      <img src="rape3.jpg" alt="Rapé 3" tabindex="0" onclick="abrirModalGaleria('rape', 2)" />
+      <div class="precio">$1300</div>
+    </div>
+    <div class="producto">
+      <img src="rape4.jpg" alt="Rapé 4" tabindex="0" onclick="abrirModalGaleria('rape', 3)" />
+      <div class="precio">$1450</div>
+    </div>
+    <div class="producto">
+      <img src="rape5.jpg" alt="Rapé 5" tabindex="0" onclick="abrirModalGaleria('rape', 4)" />
+      <div class="precio">$1600</div>
+    </div>
+    <div class="producto">
+      <img src="rape6.jpg" alt="Rapé 6" tabindex="0" onclick="abrirModalGaleria('rape', 5)" />
+      <div class="precio">$1750</div>
+    </div>
+    <div class="producto">
+      <img src="rape7.jpg" alt="Rapé 7" tabindex="0" onclick="abrirModalGaleria('rape', 6)" />
+      <div class="precio">$1900</div>
+    </div>
+    <div class="producto">
+      <img src="rape8.jpg" alt="Rapé 8" tabindex="0" onclick="abrirModalGaleria('rape', 7)" />
+      <div class="precio">$2050</div>
+    </div>
+    <div class="producto">
+      <img src="rape9.jpg" alt="Rapé 9" tabindex="0" onclick="abrirModalGaleria('rape', 8)" />
+      <div class="precio">$2200</div>
+    </div>
+    <div class="producto">
+      <img src="rape10.jpg" alt="Rapé 10" tabindex="0" onclick="abrirModalGaleria('rape', 9)" />
+      <div class="precio">$2350</div>
+    </div>
+  </div>
 </section>
 
 <section>
-  <h2>Preguntas Frecuentes</h2>
-  <details><summary>¿Qué es la medicina del Rapé?</summary><p>La medicina del Rapé es...</p></details>
-  <details><summary>¿Cuál es su función?</summary><p>Su función principal es...</p></details>
-  <details><summary>¿Tiene contraindicaciones?</summary><p>Puede tener contraindicaciones como...</p></details>
+  <h2>Kuripé</h2>
+  <div class="galeria">
+    <div class="producto">
+      <img src="kuripe1.jpg" alt="Kuripé 1" tabindex="0" onclick="abrirModalGaleria('kuripe', 0)" />
+      <div class="precio">$900</div>
+    </div>
+    <div class="producto">
+      <img src="kuripe2.jpg" alt="Kuripé 2" tabindex="0" onclick="abrirModalGaleria('kuripe', 1)" />
+      <div class="precio">$1000</div>
+    </div>
+    <div class="producto">
+      <img src="kuripe3.jpg" alt="Kuripé 3" tabindex="0" onclick="abrirModalGaleria('kuripe', 2)" />
+      <div class="precio">$1100</div>
+    </div>
+    <div class="producto">
+      <img src="kuripe4.jpg" alt="Kuripé 4" tabindex="0" onclick="abrirModalGaleria('kuripe', 3)" />
+      <div class="precio">$1200</div>
+    </div>
+    <div class="producto">
+      <img src="kuripe5.jpg" alt="Kuripé 5" tabindex="0" onclick="abrirModalGaleria('kuripe', 4)" />
+      <div class="precio">$1300</div>
+    </div>
+    <div class="producto">
+      <img src="kuripe6.jpg" alt="Kuripé 6" tabindex="0" onclick="abrirModalGaleria('kuripe', 5)" />
+      <div class="precio">$1400</div>
+    </div>
+    <div class="producto">
+      <img src="kuripe7.jpg" alt="Kuripé 7" tabindex="0" onclick="abrirModalGaleria('kuripe', 6)" />
+      <div class="precio">$1500</div>
+    </div>
+    <div class="producto">
+      <img src="kuripe8.jpg" alt="Kuripé 8" tabindex="0" onclick="abrirModalGaleria('kuripe', 7)" />
+      <div class="precio">$1600</div>
+    </div>
+    <div class="producto">
+      <img src="kuripe9.jpg" alt="Kuripé 9" tabindex="0" onclick="abrirModalGaleria('kuripe', 8)" />
+      <div class="precio">$1700</div>
+    </div>
+    <div class="producto">
+      <img src="kuripe10.jpg" alt="Kuripé 10" tabindex="0" onclick="abrirModalGaleria('kuripe', 9)" />
+      <div class="precio">$1800</div>
+    </div>
+  </div>
 </section>
 
-<div class="social-icons" aria-label="Redes sociales">
-  <a href="https://wa.me/549XXXXXXXXX" target="_blank" aria-label="WhatsApp"><img src="whatsapp.png" alt="WhatsApp" /></a>
-  <a href="https://instagram.com/tuusuario" target="_blank" aria-label="Instagram"><img src="instagram.png" alt="Instagram" /></a>
-</div>
+<section>
+  <h2>Tepí</h2>
+  <div class="galeria">
+    <div class="producto">
+      <img src="tepi1.jpg" alt="Tepí 1" tabindex="0" onclick="abrirModalGaleria('tepi', 0)" />
+      <div class="precio">$1100</div>
+    </div>
+    <div class="producto">
+      <img src="tepi2.jpg" alt="Tepí 2" tabindex="0" onclick="abrirModalGaleria('tepi', 1)" />
+      <div class="precio">$1200</div>
+    </div>
+    <div class="producto">
+      <img src="tepi3.jpg" alt="Tepí 3" tabindex="0" onclick="abrirModalGaleria('tepi', 2)" />
+      <div class="precio">$1300</div>
+    </div>
+    <div class="producto">
+      <img src="tepi4.jpg" alt="Tepí 4" tabindex="0" onclick="abrirModalGaleria('tepi', 3)" />
+      <div class="precio">$1400</div>
+    </div>
+    <div class="producto">
+      <img src="tepi5.jpg" alt="Tepí 5" tabindex="0" onclick="abrirModalGaleria('tepi', 4)" />
+      <div class="precio">$1500</div>
+    </div>
+    <div class="producto">
+      <img src="tepi6.jpg" alt="Tepí 6" tabindex="0" onclick="abrirModalGaleria('tepi', 5)" />
+      <div class="precio">$1600</div>
+    </div>
+    <div class="producto">
+      <img src="tepi7.jpg" alt="Tepí 7" tabindex="0" onclick="abrirModalGaleria('tepi', 6)" />
+      <div class="precio">$1700</div>
+    </div>
+    <div class="producto">
+      <img src="tepi8.jpg" alt="Tepí 8" tabindex="0" onclick="abrirModalGaleria('tepi', 7)" />
+      <div class="precio">$1800</div>
+    </div>
+    <div class="producto">
+      <img src="tepi9.jpg" alt="Tepí 9" tabindex="0" onclick="abrirModalGaleria('tepi', 8)" />
+      <div class="precio">$1900</div>
+    </div>
+    <div class="producto">
+      <img src="tepi10.jpg" alt="Tepí 10" tabindex="0" onclick="abrirModalGaleria('tepi', 9)" />
+      <div class="precio">$2000</div>
+    </div>
+  </div>
+</section>
 
-<footer>
-  &copy; 2025 Tienda de Rapé y Accesorios
-</footer>
+<section>
+  <h2>Porta Rapé</h2>
+  <div class="galeria">
+    <div class="producto">
+      <img src="portarape1.jpg" alt="Porta Rapé 1" tabindex="0" onclick="abrirModalGaleria('portarape', 0)" />
+      <div class="precio">$900</div>
+    </div>
+    <div class="producto">
+      <img src="portarape2.jpg" alt="Porta Rapé 2" tabindex="0" onclick="abrirModalGaleria('portarape', 1)" />
+      <div class="precio">$950</div>
+    </div>
+    <div class="producto">
+      <img src="portarape3.jpg" alt="Porta Rapé 3" tabindex="0" onclick="abrirModalGaleria('portarape', 2)" />
+      <div class="precio">$1000</div>
+    </div>
+    <div class="producto">
+      <img src="portarape4.jpg" alt="Porta Rapé 4" tabindex="0" onclick="abrirModalGaleria('portarape', 3)" />
+      <div class="precio">$1050</div>
+    </div>
+    <div class="producto">
+      <img src="portarape5.jpg" alt="Porta Rapé 5" tabindex="0" onclick="abrirModalGaleria('portarape', 4)" />
+      <div class="precio">$1100</div>
+    </div>
+    <div class="producto">
+      <img src="portarape6.jpg" alt="Porta Rapé 6" tabindex="0" onclick="abrirModalGaleria('portarape', 5)" />
+      <div class="precio">$1150</div>
+    </div>
+    <div class="producto">
+      <img src="portarape7.jpg" alt="Porta Rapé 7" tabindex="0" onclick="abrirModalGaleria('portarape', 6)" />
+      <div class="precio">$1200</div>
+    </div>
+    <div class="producto">
+      <img src="portarape8.jpg" alt="Porta Rapé 8" tabindex="0" onclick="abrirModalGaleria('portarape', 7)" />
+      <div class="precio">$1250</div>
+    </div>
+    <div class="producto">
+      <img src="portarape9.jpg" alt="Porta Rapé 9" tabindex="0" onclick="abrirModalGaleria('portarape', 8)" />
+      <div class="precio">$1300</div>
+    </div>
+    <div class="producto">
+      <img src="portarape10.jpg" alt="Porta Rapé 10" tabindex="0" onclick="abrirModalGaleria('portarape', 9)" />
+      <div class="precio">$1350</div>
+    </div>
+  </div>
+</section>
 
-<!-- Modal para imagen -->
-<div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
-  <span class="flecha izq" tabindex="0" role="button" aria-label="Imagen anterior" onclick="cambiarImagen(-1)">&#10094;</span>
-  <img id="modalImg" alt="Imagen ampliada" />
-  <span class="flecha der" tabindex="0" role="button" aria-label="Imagen siguiente" onclick="cambiarImagen(1)">&#10095;</span>
+<section>
+  <h2>Variedades de Rapé (Descripción)</h2>
+  <div id="acordeon">
+    <details><summary>Rapé 1</summary><p>Descripción detallada de la variedad de Rapé número 1.</p></details>
+    <details><summary>Rapé 2</summary><p>Descripción detallada de la variedad de Rapé número 2.</p></details>
+    <details><summary>Rapé 3</summary><p>Descripción detallada de la variedad de Rapé número 3.</p></details>
+    <details><summary>Rapé 4</summary><p>Descripción detallada de la variedad de Rapé número 4.</p></details>
+    <details><summary>Rapé 5</summary><p>Descripción detallada de la variedad de Rapé número 5.</p></details>
+    <details><summary>Rapé 6</summary><p>Descripción detallada de la variedad de Rapé número 6.</p></details>
+    <details><summary>Rapé 7</summary><p>Descripción detallada de la variedad de Rapé número 7.</p></details>
+    <details><summary>Rapé 8</summary><p>Descripción detallada de la variedad de Rapé número 8.</p></details>
+    <details><summary>Rapé 9</summary><p>Descripción detallada de la variedad de Rapé número 9.</p></details>
+    <details><summary>Rapé 10</summary><p>Descripción detallada de la variedad de Rapé número 10.</p></details>
+  </div>
+</section>
+
+<section>
+  <h2>Preguntas Frecuentes sobre la Medicina del Rapé</h2>
+  <div id="preguntas">
+    <details>
+      <summary>¿Qué es el Rapé?</summary>
+      <p>El Rapé es una mezcla tradicional de tabaco en polvo y otras plantas medicinales utilizada en rituales ancestrales.</p>
+    </details>
+    <details>
+      <summary>¿Cuál es la función del Rapé?</summary>
+      <p>Se usa para la limpieza espiritual, concentración y conexión con la naturaleza y los ancestros.</p>
+    </details>
+    <details>
+      <summary>¿Tiene contraindicaciones?</summary>
+      <p>No se recomienda su uso en personas con problemas respiratorios, cardíacos o mujeres embarazadas sin consultar a un especialista.</p>
+    </details>
+  </div>
+</section>
+
+<!-- Modal para ampliar imágenes -->
+<div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <span class="flecha izq" aria-label="Imagen anterior" tabindex="0" onclick="moverImagen(-1)">&#10094;</span>
+  <div class="modal-content">
+    <img id="imagen-modal" src="" alt="" />
+  </div>
+  <span class="flecha der" aria-label="Imagen siguiente" tabindex="0" onclick="moverImagen(1)">&#10095;</span>
 </div>
 
 <script>
-  const categorias = ['Rapé', 'Kuripé', 'Tepí', 'Porta Rapé'];
-  // Suponemos que las imágenes se llaman rape1.jpg ... kuripe1.jpg ...
-  const imagenes = categorias.map(cat => Array.from({length:10}, (_,i) => ({
-    img: `${cat.toLowerCase().replace(/ /g,'')}${i+1}.jpg`,
-    precio: 1000 + i*150,
-    nombre: `${cat} ${i+1}`
-  })));
+  // Imágenes de cada galería, en el orden de la sección
+  const galerias = {
+    rape: [
+      'rape1.jpg','rape2.jpg','rape3.jpg','rape4.jpg','rape5.jpg',
+      'rape6.jpg','rape7.jpg','rape8.jpg','rape9.jpg','rape10.jpg'
+    ],
+    kuripe: [
+      'kuripe1.jpg','kuripe2.jpg','kuripe3.jpg','kuripe4.jpg','kuripe5.jpg',
+      'kuripe6.jpg','kuripe7.jpg','kuripe8.jpg','kuripe9.jpg','kuripe10.jpg'
+    ],
+    tepi: [
+      'tepi1.jpg','tepi2.jpg','tepi3.jpg','tepi4.jpg','tepi5.jpg',
+      'tepi6.jpg','tepi7.jpg','tepi8.jpg','tepi9.jpg','tepi10.jpg'
+    ],
+    portarape: [
+      'portarape1.jpg','portarape2.jpg','portarape3.jpg','portarape4.jpg','portarape5.jpg',
+      'portarape6.jpg','portarape7.jpg','portarape8.jpg','portarape9.jpg','portarape10.jpg'
+    ]
+  };
 
-  const cont = document.getElementById('contenedorGalerias');
+  let modal = document.getElementById('modal');
+  let modalImg = document.getElementById('imagen-modal');
+  let currentGaleria = null;
+  let currentIndex = 0;
 
-  categorias.forEach((cat, idx) => {
-    const sec = document.createElement('section');
-    sec.innerHTML = `<h2>${cat}</h2><div class='galeria' id='gal${idx}'></div>`;
-    cont.appendChild(sec);
-    renderGaleria(`gal${idx}`, imagenes[idx], idx);
-  });
-
-  function renderGaleria(id, arr, catIdx){
-    const g = document.getElementById(id);
-    arr.forEach((p, i) => {
-      const div = document.createElement('div');
-      div.className = 'producto';
-      div.innerHTML = `<img src='${p.img}' alt='${p.nombre}' onclick='abrirModal(${catIdx},${i})' tabindex="0" onkeypress="if(event.key==='Enter'){abrirModal(${catIdx},${i})}"> 
-                       <div class='precio'>$${p.precio}</div>`;
-      g.appendChild(div);
-    });
-  }
-
-  // Modal imagen con flechas
-  let imgIndex=0, catIndex=0;
-  const modal = document.getElementById('modal');
-  const modalImg = document.getElementById('modalImg');
-
-  function abrirModal(cat, i){
-    catIndex = cat; imgIndex = i;
+  // Abrir modal simple para productos principales (sin galería)
+  function abrirModalSimple(src, alt) {
     modal.style.display = 'flex';
-    mostrarImagen();
+    modalImg.src = src;
+    modalImg.alt = alt;
+    currentGaleria = null;
   }
-  function mostrarImagen(){
-    modalImg.src = imagenes[catIndex][imgIndex].img;
-    modalImg.alt = imagenes[catIndex][imgIndex].nombre;
+
+  // Abrir modal galería con navegación
+  function abrirModalGaleria(galeria, index) {
+    currentGaleria = galeria;
+    currentIndex = index;
+    modal.style.display = 'flex';
+    modalImg.src = galerias[galeria][index];
+    modalImg.alt = galeria + ' ' + (index+1);
   }
-  function cambiarImagen(d){
-    imgIndex = (imgIndex + d + 10) % 10;
-    mostrarImagen();
+
+  function moverImagen(direccion) {
+    if (!currentGaleria) return;
+    currentIndex += direccion;
+    if (currentIndex < 0) currentIndex = galerias[currentGaleria].length - 1;
+    if (currentIndex >= galerias[currentGaleria].length) currentIndex = 0;
+    modalImg.src = galerias[currentGaleria][currentIndex];
+    modalImg.alt = currentGaleria + ' ' + (currentIndex+1);
   }
-  modal.onclick = e => {
-    if(e.target === modal) modal.style.display = 'none';
-  }
-  // Cerramos modal con Escape
-  window.addEventListener('keydown', e => {
-    if(e.key === 'Escape' && modal.style.display === 'flex'){
+
+  // Cerrar modal al clickear fuera de la imagen o tecla ESC
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
       modal.style.display = 'none';
     }
   });
-
-  // Acordeón variedades Rapé
-  const acordeon = document.getElementById('acordeon');
-  for(let i=1; i<=10; i++){
-    const det = document.createElement('details');
-    const sum = document.createElement('summary');
-    sum.textContent = `Rapé ${i}`;
-    const p = document.createElement('p');
-    p.textContent = `Descripción detallada de la variedad de Rapé número ${i}.`;
-    det.appendChild(sum);
-    det.appendChild(p);
-    acordeon.appendChild(det);
-  }
+  window.addEventListener('keydown', (e) => {
+    if (modal.style.display === 'flex') {
+      if (e.key === 'Escape') {
+        modal.style.display = 'none';
+      } else if (e.key === 'ArrowRight') {
+        moverImagen(1);
+      } else if (e.key === 'ArrowLeft') {
+        moverImagen(-1);
+      }
+    }
+  });
 </script>
+
+<div class="social-icons" aria-label="Redes sociales">
+  <a href="https://wa.me/549XXXXXXXXXX" target="_blank" rel="noopener" aria-label="Whatsapp">
+    <img src="whatsapp-logo.png" alt="Whatsapp" />
+  </a>
+  <a href="https://instagram.com/tuusuario" target="_blank" rel="noopener" aria-label="Instagram">
+    <img src="instagram-logo.png" alt="Instagram" />
+  </a>
+</div>
+
+<footer>
+  &copy; 2025 Tu Tienda de Rapé. Todos los derechos reservados.
+</footer>
 
 </body>
 </html>
+
 
