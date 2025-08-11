@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<style>
-    .acordeon-item .contenido {
-      max-height: none !important;
-      overflow-y: visible !important;
+  <style>
+    /* Scroll solo si el acordeón tiene un max-height inline (lo que pasa cuando está abierto) */
+    .acordeon-item .contenido[style*="max-height"] {
+      overflow-y: auto !important;
     }
   </style>
 <head>
@@ -681,6 +681,7 @@ Recibir rapé es un acto de presencia. Se siente como una suave brisa que limpia
 
 </body>
 </html>
+
 
 
 
