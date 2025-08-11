@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
- <style>
-    /* Scroll solo para el texto dentro del acordeón */
-    .acordeon-item activo.contenido {
-      max-height: 300px;   /* Altura máxima visible */
-      overflow-y: auto;    /* Aparece scroll si el texto supera la altura */
+<style>
+    /* Scroll solo cuando el acordeón tiene un max-height (o sea, está abierto) */
+    .acordeon-item .contenido[style*="max-height"] {
+      overflow-y: auto;
     }
   </style>
 <head>
@@ -499,7 +498,7 @@
   <section class="acordeon">
     <h2>Descubrí lo que hace único a cada Rapé</h2>
     <h2>Leer en apaisado</h2>
-    <div class="acordeon-item activo">
+    <div class="acordeon-item">
       <button>Artemisa</button>
       <div class="contenido"><p>Rapé que potencia la intuición y la percepción espiritual, fortaleciendo el centro de la conciencia interior. Contiene artemisa, una planta que equilibra las emociones, favoreciendo la calma, la claridad mental y la conexión con la sabiduría interna.
 Este rapé invita amorosamente a tomar riesgos, darse permiso para errar y abrirse a lo desconocido, acompañando en un viaje profundo hacia el yo interno. Permite alcanzar un estado meditativo profundo y libre de distracciones, donde la percepción se expande y el alma se armoniza. Artemisa - Cenizas de chañar - Cenizas de algarrobo - Tabaco.</p></div>
@@ -682,6 +681,7 @@ Recibir rapé es un acto de presencia. Se siente como una suave brisa que limpia
 
 </body>
 </html>
+
 
 
 
